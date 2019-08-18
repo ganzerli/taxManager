@@ -23,6 +23,8 @@ int main (){
     text = login.getName();
     cout << "login.getName says   22222>>>>  " << text << endl;
 
+    login.checkUsername();
+
 
 
 
