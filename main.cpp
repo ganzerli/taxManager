@@ -25,6 +25,9 @@ int main (){
 
     login.checkUsername();
 
+    text = login.getName();
+    printf("logged in as main %s \n", text);
+
 
 
 
