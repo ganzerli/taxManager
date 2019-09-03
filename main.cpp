@@ -20,13 +20,14 @@ int main (){
     cout << "abc init.menuGekozen says   ////>>>>  " << text << endl;
 
     //have a menuhandler to get the write name program class Login
-    text = login.getName();
-    cout << "login.getName says   22222>>>>  " << text << endl;
+    //login.setName("user");
+    //text = login.getName();
+    //cout << "login.getName says   22222>>>>  " << text << endl;
 
-    login.checkUsername();
+    login.checkUsername(); // does not return redable text
 
     text = login.getName();
-    printf("logged in as main %s \n", text);
+    cout << "logged in as main " << login.getName();
 
 
 

@@ -14,24 +14,24 @@ struct stat info;
 using namespace std;
 
 string Login::getName(){
-    this->name = "name the name";
-    return this->name;
+    cout << "name is ... .. . . " << this-> name << endl;
+    return this-> name;
 }
+
 
 // if there is no file create file, if username not in write in and retourn status
 string Login::checkUsername(){
     // if folder does not exist create folder
-    string username;
+    name = "nameName";
+
     const char *dirPathname = "./TEST";
     int found = 0;
     // ifstream opens the file without to overwrite
 
     ///
-        name = "another name";
+    
     //
-    
- 
-    
+       
     if( stat( dirPathname, &info ) != 0 ){
         // NOT ACCESSIBLE FOLDER FOLDER DOES NOT EXISTS
         printf( "cannot access %s , creating folder \n", dirPathname );
@@ -84,7 +84,7 @@ string Login::checkUsername(){
 
         // log in user
         // needed cast to string from char
-        this->name = data;
+        name = data;
 
         printf("logged in as %s \n", data);
 
@@ -101,6 +101,5 @@ string Login::checkUsername(){
         // write to the file
     }
     //file not existing create ask for confirm write and set name
-    
-    return username;
+    return this-> name;
 }

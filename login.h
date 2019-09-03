@@ -4,6 +4,7 @@ class Login {
     public:
     std::string getName();
     std::string checkUsername();
-    private:
     std::string name;
+    private:
+    
 };
