@@ -7,6 +7,8 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
+// class to get array of line in file func(path) return array
+
 // for fstream
 #include <fstream> 
 
@@ -63,7 +65,7 @@ string Login::checkUsername(){
         ofstream outfile;
 
     if(!ifile || ifile.fail()){
-        // file not found create file
+        // file not found create file and add a user
         cout << "file does not exist" << endl;
 
         //array of chars to write 
@@ -91,6 +93,13 @@ string Login::checkUsername(){
     }else{
         // file found open and check for username
         cout << " file .txt exists!!" << endl;
+
+        // read line bz line from file
+        string line;
+        // input stream
+
+
+
         found++;
         }
     }
@@ -102,4 +111,8 @@ string Login::checkUsername(){
     }
     //file not existing create ask for confirm write and set name
     return this-> name;
+}
+
+string Login::userNameList(){
+    // open file retourn array of users
 }

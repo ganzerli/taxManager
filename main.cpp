@@ -1,5 +1,6 @@
 #include"init.h"
 #include"login.h"
+#include"Filetoarr.h"
 
 #include<iostream>
 
@@ -9,6 +10,7 @@ int main (){
     //init classes 
     Init init;
     Login login;
+    Filetoarr arrfile;
     // entering menu
     // class init start the program and has menuhandler
     int numberSelected = init.menu();
@@ -28,6 +30,8 @@ int main (){
 
     text = login.getName();
     cout << "logged in as main " << login.getName();
+
+    arrfile.getLines("./TEST/login.txt");
 
 
 
