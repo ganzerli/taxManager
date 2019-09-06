@@ -30,6 +30,7 @@ int main (){
 
     text = login.getName();
     cout << "logged in as main " << login.getName() << endl;
+    // if get name is NULL request again
 
 
     ////

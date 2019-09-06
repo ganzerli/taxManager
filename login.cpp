@@ -26,7 +26,7 @@ string Login::getName(){
 // if there is no file create file, if username not in write in and retourn status
 string Login::checkUsername(){
     // if folder does not exist create folder
-    name = "nameName";
+    name = "NULL";
 
     const char *dirPathname = "./TEST";
     int found = 0;
@@ -118,34 +118,55 @@ string Login::checkUsername(){
             }
 
              if( userArr[counter] == input){
-                
-                
             // username found
                 cout << "!!!! username "<< input << "found !!!" << endl;
-
+                // register username and continue
+                name  = userArr[counter];
+                found++;
                 //exit loop while condition
                 counter = 255;
             
             }else{
-                //not found
-                cout << "122 login.cpp ,,, username "<< userArr[counter]  << " not " << input << endl;
+                //not found 
+                //looping in file
+                //cout << "122 login.cpp ,,, username "<< userArr[counter]  << " not " << input << endl;
             }
-        }
-
-        // input stream
-
-
-
-        found++;
+            cout << "login counter" << found << endl;
         }
     }
+    }//file check
 
-        // if/ when file and directory exists ask for confirm and add
+    //if found is 2 then, folder found, file found, user found return input or return null
+    if(found != 2){
+     name = "NULL";
+     // ask if insert the name if yes insert
+     int response;
+     cout << "Name in file not found, ? (1)add username     (2)exit" << endl;
+     cin >> response;
 
-    if(found > 1){
-        // write to the file
+     if(response == 1){
+        // add username
+        cout << "writingv NEW username ... " << endl;
+        //rewrite all usernames in the file polus new 
+        //outfile.open("./TEST/login.txt");
+        cout << "Enter Username: "; 
+
+        // somehow write the array and add one
+
+        //
+
+        //outfile << data << endl;
+        //outfile.close();
+
+        //log in
+
+     }else{
+         // not logged in
+         name = "NULL";
+         cout << response << endl;
+     }
     }
-    //file not existing create ask for confirm write and set name
+    
     return this-> name;
 }
 
