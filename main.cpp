@@ -29,13 +29,7 @@ int main (){
     login.checkUsername(); // does not return redable text
 
     text = login.getName();
-    cout << "logged in as main " << login.getName();
-
-    arrfile.getLines("./TEST/login.txt");
-
-
-
-
+    cout << "logged in as main " << login.getName() << endl;
 
 
     ////

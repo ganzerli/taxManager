@@ -1,4 +1,6 @@
 #include "login.h"
+#include "filetoarr.h"
+
 #include <iostream>
 // mkdir
 #include <stdio.h>
@@ -45,7 +47,7 @@ string Login::checkUsername(){
         }
     }else if( info.st_mode & S_IFDIR ) { 
         // FOLDER EXISTS 
-        printf( "%s is a directory\n", dirPathname );
+     //   printf( "%s is a directory\n", dirPathname );
         found++;
     }else{
         // NOTHING..
@@ -92,10 +94,44 @@ string Login::checkUsername(){
 
     }else{
         // file found open and check for username
+        Filetoarr userList;
+        string* userArr = userList.getLines("./TEST/login.txt");
+        
         cout << " file .txt exists!!" << endl;
 
-        // read line bz line from file
-        string line;
+        // see if the user isin the array
+        cout << "insert username "<< endl;
+
+        //userinput take line and store in input
+        string input;
+        getline(cin , input);
+
+        cout << "searching for "<< input << endl;
+
+        // search the user input in the user list
+        int counter =0;
+        while(counter < 254){
+            cout << "user n " << counter << "  counted" << userArr[counter] << endl;
+            counter++;
+            if( userArr[counter] == ""){
+                counter = 255;
+            }
+
+             if( userArr[counter] == input){
+                
+                
+            // username found
+                cout << "!!!! username "<< input << "found !!!" << endl;
+
+                //exit loop while condition
+                counter = 255;
+            
+            }else{
+                //not found
+                cout << "122 login.cpp ,,, username "<< userArr[counter]  << " not " << input << endl;
+            }
+        }
+
         // input stream
 
 
@@ -113,6 +149,3 @@ string Login::checkUsername(){
     return this-> name;
 }
 
-string Login::userNameList(){
-    // open file retourn array of users
-}
