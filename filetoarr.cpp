@@ -1,6 +1,7 @@
 #include"Filetoarr.h"
 #include <iostream>
 #include <fstream> 
+#include <vector>
 
 using namespace std;
 
@@ -10,7 +11,6 @@ string* Filetoarr::getLines(string path){
 // init input file stream
 std::ifstream file(path);
 // count size of array
-
 int linesNum = this->countLines(path);
 
 cout << "n //" << linesNum << "lines in file"<< path <<endl;
@@ -21,7 +21,6 @@ if (file.is_open()) {
     std::string line;
     std::string templine;
     int counter = 0;
-    
     while (getline(file, line)) {
         // using printf() in all tests for consistency
         //printf("%s", line.c_str());
@@ -33,26 +32,13 @@ if (file.is_open()) {
 }else{
     cout << "unable to open file:" << path << endl;
 }
-
-
-
-
-
-    ////
-    ///
-    //
-    //
-   static string arr[10];
-   arr[0] = "lkd s a  jf";
-   arr[1] = "lkleaipon  wdsajf";
-   arr[2] = "lkd   sa  j oiuexpmaeff";
-   cout << arr[1] << endl;
-
     return rows;
 }
 
 
-Filetoarr::countLines(string path){
+
+// not usable in c++
+int Filetoarr::countLines(string path){
     static int num = 0;
     std::ifstream file(path);
     if (file.is_open()) {
@@ -62,7 +48,17 @@ Filetoarr::countLines(string path){
     }
     file.close();
     }else{
-        cout << "unable to open file:" << path << endl;
+         std::cout << "unable to open file:" << path <<endl;
     }
     return num;
 }
+
+vector<string> Filetoarr::arrToVector(string path){
+    // in login is used the path .. same as to array but to vecetor
+    string* arr = this->getLines(path);
+    vector<string> stringVector;
+    // add with while loop value to vector and retourn
+
+    stringVector.push_back("string");
+    return stringVector;
+};    

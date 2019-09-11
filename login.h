@@ -4,7 +4,8 @@ class Login {
     public:
     std::string getName();
     std::string checkUsername();
-    std::string name;
     private:
+    std::string name = "NULL";
+    int setName(std::string nametoset);
     
 };

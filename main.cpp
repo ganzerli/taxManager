@@ -28,9 +28,8 @@ int main (){
     cout << "abc init.menuGekozen says   ////>>>>  " << text << endl;
 
     //have a menuhandler to get the write name program class Login
-    login.checkUsername(); // does not return redable text
+    login.checkUsername(); 
 
-    text = login.getName();
     cout << "logged in as main " << login.getName() << endl;
     // if user registered login ok and ask options write read
     // switch handler 
@@ -47,6 +46,8 @@ int main (){
         cin.clear();
         cin.ignore(10000, '\n');
 
+        // prepare folders for logged in user is not existing
+        crmenu.init(login.getName());
         crmenu.switchHandler(input);
     }
     // class write menu , init folder with username

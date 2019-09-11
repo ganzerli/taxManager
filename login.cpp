@@ -18,8 +18,13 @@ struct stat info;
 using namespace std;
 
 string Login::getName(){
-    cout << "name is ... .. . . " << this-> name << endl;
+    //cout << "name is ... .. . . " << this-> name << endl;
     return this-> name;
+}
+
+int Login::setName(string nametoset){
+    this->name = nametoset;
+    return 1;
 }
 
 
@@ -50,9 +55,12 @@ string Login::checkUsername(){
     }
 
 
-
+    //  FILE   FILE   FILE   FILE   FILE   FILE   FILE
     // if folder exists check file
     if(found > 0 && found < 3){
+         // init userlist
+         Filetoarr userList;
+
         cout << "chekcing for file" << endl;
         //check for file
         ifstream ifile;
@@ -64,43 +72,32 @@ string Login::checkUsername(){
     if(!ifile || ifile.fail()){
         // file not found create file and add a user
         cout << "file does not exist" << endl;
-
         //array of chars to write 
         char data[100];
-
         // open a file in write mode.
         outfile.open("./TEST/login.txt");
-
         cout << "Writing to the file" << endl;
         cout << "Enter Username: "; 
 
         cin.getline(data, 100);
-        
         // write inputted data into the file.
         outfile << data << endl;
         outfile.close();
         found++;
-
         // log in user
         // needed cast to string from char
         name = data;
-
         printf("logged in as %s \n", data);
-
-    }else{
+    }else{ // if file exists
         // file found open and check for username
-        Filetoarr userList;
         string* userArr = userList.getLines("./TEST/login.txt");
-        
+        //userList.trim
         cout << " file .txt exists!!" << endl;
-
         // see if the user isin the array
         cout << "insert username "<< endl;
-
         //userinput take line and store in input
         string input;
         getline(cin , input);
-
         cout << "searching for "<< input << endl;
 
         // search the user input in the user list
@@ -134,33 +131,33 @@ string Login::checkUsername(){
 
     //if found is 2 then, folder found, file found, user found return input or return null
     if(found != 2){
-     name = "NULL";
      // ask if insert the name if yes insert
      int response;
      cout << "Name in file not found, ? (1)add username     (2)exit" << endl;
      cin >> response;
 
-     if(response == 1){
-        // add username
-        cout << "writingv NEW username ... " << endl;
-        //rewrite all usernames in the file polus new 
-        //outfile.open("./TEST/login.txt");
-        cout << "Enter Username: "; 
+        if(response == 1){
+            // add username
+            cout << "writingv NEW username ... " << endl;
+            //rewrite all usernames in the file polus new 
+            //outfile.open("./TEST/login.txt");
+            cout << "Enter Username: "; 
 
-        // somehow write the array and add one
+            // somehow write the array and add one
 
-        //
+            //
 
-        //outfile << data << endl;
-        //outfile.close();
+            //outfile << data << endl;
+            //outfile.close();
 
-        //log in
+            //log in
 
-     }else{
-         // not logged in
-         name = "NULL";
-         cout << response << endl;
-     }
+        }else{
+            // dont add username 2) = exit
+            name = "NULL";
+            cout << response << endl;
+        }
+
     }
     
     return this-> name;

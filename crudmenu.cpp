@@ -22,14 +22,12 @@ using namespace std;
 
 int Crudmenu::switchHandler(int num){
     // needed login for the username
-    Login login;
     int selected = 0;
     switch(num) {
     case 1 : cout << "enter data selected.."<< login.getName() << endl; // prints "1"
     // see if there is a folder for the user, if not crate ,
     // and add day and bill
-
-    this->init(login.getName());
+    this->init(loggedUser);
              break;       // and exits the switch
     case 2 : cout << '2' << endl;
     // search for various searchs with class search
@@ -43,7 +41,7 @@ string Crudmenu::init(string username){
     // data folder must be already specified
     // find the path for the folder from username
     stringstream strstream;
-    strstream << "./DATA" << username ;
+    strstream << "./DATA/" << username ;
     string pathcomplete = strstream.str();
     
     cout << checkfolder(pathcomplete) << "from checkfoldrer" << endl;
