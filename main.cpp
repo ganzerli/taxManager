@@ -1,16 +1,22 @@
 #include"init.h"
 #include"login.h"
 #include"Filetoarr.h"
+#include"Crudmenu.h"
 
 #include<iostream>
 
 using namespace std;
+
+// insert in the day, and possibility to modify and add to the day bill.
+// sign costs of living , trasport per mont, to find unuseful expenses and get tipps to cut
+// print values together at choosen option. day by day per thing
 
 int main (){
     //init classes 
     Init init;
     Login login;
     Filetoarr arrfile;
+    Crudmenu crmenu;
     // entering menu
     // class init start the program and has menuhandler
     int numberSelected = init.menu();
@@ -22,15 +28,28 @@ int main (){
     cout << "abc init.menuGekozen says   ////>>>>  " << text << endl;
 
     //have a menuhandler to get the write name program class Login
-    //login.setName("user");
-    //text = login.getName();
-    //cout << "login.getName says   22222>>>>  " << text << endl;
-
     login.checkUsername(); // does not return redable text
 
     text = login.getName();
     cout << "logged in as main " << login.getName() << endl;
-    // if get name is NULL request again
+    // if user registered login ok and ask options write read
+    // switch handler 
+    if ( login.getName() != "NULL" ){
+        // if not created init folder
+        // ask what to do
+      
+        cout << " welcome  " << login.getName() << " choose an option for the data management" << endl;
+        cout << "1 >> write to file " << endl;
+        cout << "2 >> find  " << endl;
+        
+        int input;
+        cin >> input;
+        cin.clear();
+        cin.ignore(10000, '\n');
+
+        crmenu.switchHandler(input);
+    }
+    // class write menu , init folder with username
 
 
     ////

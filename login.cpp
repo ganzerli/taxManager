@@ -30,11 +30,6 @@ string Login::checkUsername(){
 
     const char *dirPathname = "./TEST";
     int found = 0;
-    // ifstream opens the file without to overwrite
-
-    ///
-    
-    //
        
     if( stat( dirPathname, &info ) != 0 ){
         // NOT ACCESSIBLE FOLDER FOLDER DOES NOT EXISTS
@@ -112,7 +107,7 @@ string Login::checkUsername(){
         int counter =0;
         while(counter < 254){
             cout << "user n " << counter << "  counted" << userArr[counter] << endl;
-            counter++;
+            
             if( userArr[counter] == ""){
                 counter = 255;
             }
@@ -132,7 +127,8 @@ string Login::checkUsername(){
                 //cout << "122 login.cpp ,,, username "<< userArr[counter]  << " not " << input << endl;
             }
             cout << "login counter" << found << endl;
-        }
+            counter++;
+        }// while
     }
     }//file check
 
