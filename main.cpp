@@ -65,8 +65,6 @@ int main (){
     cout << "written :" << theString << endl;
 
     // save  to then writre in the doc
-    
 
-    
     return 1;
 }

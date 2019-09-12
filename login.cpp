@@ -1,6 +1,6 @@
 #include "login.h"
 #include "filetoarr.h"
-
+#include <vector>
 #include <iostream>
 // mkdir
 #include <stdio.h>
@@ -32,6 +32,7 @@ int Login::setName(string nametoset){
 string Login::checkUsername(){
     // if folder does not exist create folder
     name = "NULL";
+     Filetoarr userList;
 
     const char *dirPathname = "./TEST";
     int found = 0;
@@ -59,7 +60,7 @@ string Login::checkUsername(){
     // if folder exists check file
     if(found > 0 && found < 3){
          // init userlist
-         Filetoarr userList;
+        
 
         cout << "chekcing for file" << endl;
         //check for file
@@ -80,6 +81,8 @@ string Login::checkUsername(){
         cout << "Enter Username: "; 
 
         cin.getline(data, 100);
+        cin.clear();
+            cin.ignore(10000, '\n');
         // write inputted data into the file.
         outfile << data << endl;
         outfile.close();
@@ -141,9 +144,27 @@ string Login::checkUsername(){
             cout << "writingv NEW username ... " << endl;
             //rewrite all usernames in the file polus new 
             //outfile.open("./TEST/login.txt");
-            cout << "Enter Username: "; 
+           
+            vector<string> usersvector = userList.fileToVector("./TEST/login.txt");
+            //get username
+             cout << "Enter Username: "<<endl; 
+            cin.clear();
+            cin.ignore(10000, '\n');
+            string newUsername;
+            getline(cin, newUsername);
+            cin.clear();
+            //cin.ignore(10000, '\n');
+            
+            cout << ' ' << newUsername << endl;
+            
+
+            usersvector.push_back(newUsername);
+            userList.vectorToFile(usersvector);
+            // insert in vector 
+            // rewrite to file
 
             // somehow write the array and add one
+
 
             //
 
