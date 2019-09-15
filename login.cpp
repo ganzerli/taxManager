@@ -32,7 +32,7 @@ int Login::setName(string nametoset){
 string Login::checkUsername(){
     // if folder does not exist create folder
     name = "NULL";
-     Filetoarr userList;
+    Filetoarr userList;
 
     const char *dirPathname = "./TEST";
     int found = 0;
@@ -55,13 +55,11 @@ string Login::checkUsername(){
         printf( "%s is no directory\n", dirPathname );
     }
 
-
     //  FILE   FILE   FILE   FILE   FILE   FILE   FILE
     // if folder exists check file
     if(found > 0 && found < 3){
          // init userlist
         
-
         cout << "chekcing for file" << endl;
         //check for file
         ifstream ifile;
@@ -104,7 +102,7 @@ string Login::checkUsername(){
         cout << "searching for "<< input << endl;
 
         // search the user input in the user list
-        int counter =0;
+        int counter = 0;
         while(counter < 254){
             cout << "user n " << counter << "  counted" << userArr[counter] << endl;
             

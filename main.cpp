@@ -48,7 +48,7 @@ int main (){
 
         // prepare folders for logged in user is not existing
         crmenu.init(login.getName());
-        crmenu.switchHandler(input);
+        crmenu.switchHandler(input, login.getName());
     }
     // class write menu , init folder with username
 

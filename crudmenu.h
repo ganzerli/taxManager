@@ -2,7 +2,7 @@
 
 class Crudmenu {
     public:
-    int switchHandler(int num);
+    int switchHandler(int num, std::string username);
     std::string init(std::string username);
     std::string getPath();
     int checkfolder(std::string pathname);

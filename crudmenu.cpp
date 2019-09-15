@@ -1,6 +1,9 @@
 #include"crudmenu.h"
+#include"datafiles.h"
 #include"login.h"
+
 #include <iostream>
+#include <vector>
 
 // string concatenation
 #include <sstream>
@@ -17,18 +20,36 @@
 // crate char arr from string
 #include <bits/stdc++.h> 
 
-
 using namespace std;
 
-int Crudmenu::switchHandler(int num){
+int Crudmenu::switchHandler(int num , string username){
     // needed login for the username
+    Login login;
+    Datafiles datafile;
     int selected = 0;
     switch(num) {
-    case 1 : cout << "enter data selected.."<< login.getName() << endl; // prints "1"
+    case 1 : cout << "enter data selected.."<< username << endl; // prints "1"
+  
     // see if there is a folder for the user, if not crate ,
     // and add day and bill
-    this->init(loggedUser);
-             break;       // and exits the switch
+    this->init(username);
+    // folder will be initialiyed..
+    // get data of day
+    login.getName();
+    datafile.getInput();
+    // if folder exists ask data
+    //needed
+    // get path from init.. return path ,crete folder in case not existing
+    //a file.. .. named ..-------v
+    //a something to get the data from user
+    // a something to store data
+    // make the file with datum as name
+    // wirte in file
+
+
+
+
+             break;
     case 2 : cout << '2' << endl;
     // search for various searchs with class search
              break;
@@ -46,7 +67,7 @@ string Crudmenu::init(string username){
     
     cout << checkfolder(pathcomplete) << "from checkfoldrer" << endl;
 
-    if (checkfolder(pathcomplete)){
+    if (checkfolder(pathcomplete) == 0){
 
     }else{
         //data already initialized, get and retpurn path
@@ -64,8 +85,8 @@ int Crudmenu::checkfolder(string pathname){
     strcpy(arrpath, pathname.c_str());
 
     const char *dirPathname = arrpath;
-    int found = 0;
-       
+    int dirPath = 0;
+
     if( stat( dirPathname, &info ) != 0 ){
         // NOT ACCESSIBLE FOLDER FOLDER DOES NOT EXISTS
         printf( "cannot access %s , creating folder \n", dirPathname );
@@ -74,21 +95,19 @@ int Crudmenu::checkfolder(string pathname){
             printf( " folder created in %s \n", dirPathname );
             system("pause");
             // folder created
-            found++;
+            dirPath++;
         }
     }else if( info.st_mode & S_IFDIR ) { 
         // FOLDER EXISTS 
-        // printf( "%s is a directory\n", dirPathname );
-        found++;
+        dirPath++;
     }else{
         // NOTHING..
         printf( "%s is no directory\n", dirPathname );
     }
-    return found;
+    return dirPath;
 }
 
 string Crudmenu::getPath(){
 
-    string path;
-    return path;
+return "DATA";
 };

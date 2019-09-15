@@ -58,9 +58,6 @@ vector<string> Filetoarr::fileToVector(string path){
     string* arr = this->getLines(path);
     vector<string> stringVector;
     // add with while loop value to vector and retourn
-
-
-
         // init input file stream
         std::ifstream file(path);
 
@@ -77,12 +74,10 @@ vector<string> Filetoarr::fileToVector(string path){
               //  counter++;
             }
             file.close();
-
             // print all values for vector
                 for (auto it = stringVector.begin(); it != stringVector.end(); ++it){ 
                     cout << ' ' << *it << endl; 
                 } 
-                
         }else{
             cout << "unable to open file:" << path << endl;
         }
@@ -90,7 +85,6 @@ vector<string> Filetoarr::fileToVector(string path){
 };    
 
 vector<string> Filetoarr::vectorToFile(vector<string> v){
-    vector<string>copy(v);
 
         ofstream outfile;
         outfile.open("./TEST/login.txt");
