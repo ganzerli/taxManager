@@ -1,5 +1,5 @@
 #include"crudmenu.h"
-#include"datafiles.h"
+#include"datafile.h"
 #include"login.h"
 
 #include <iostream>
@@ -25,30 +25,43 @@ using namespace std;
 int Crudmenu::switchHandler(int num , string username){
     // needed login for the username
     Login login;
-    Datafiles datafile;
+    Datafile datafile;
+
+
+    string fileName = "lsakdjflksadjflksadjflkasdjf";
+
+    vector<string> usrdtaresult;
+
     int selected = 0;
     switch(num) {
     case 1 : cout << "enter data selected.."<< username << endl; // prints "1"
-  
     // see if there is a folder for the user, if not crate ,
     // and add day and bill
+    
+
     this->init(username);
     // folder will be initialiyed..
-    // get data of day
-    login.getName();
-    datafile.getInput();
-    // if folder exists ask data
+       
     //needed
     // get path from init.. return path ,crete folder in case not existing
     //a file.. .. named ..-------v
     //a something to get the data from user
     // a something to store data
+    login.getName();
+    
+    usrdtaresult = datafile.userInput();
     // make the file with datum as name
+    // from the first input get date
+    fileName = usrdtaresult[0];
+    fileName = fileName.substr(3,7);
+    cout << usrdtaresult[0] << endl;
+    cout << fileName.substr(3,7) << endl;
+
+    cout << fileName << endl;
+    cout << "DATA INSERTED    DATA INSERTED    DATA INSERTED"<< endl;
+    // build string to insert in the file
+    //check for file, create in case
     // wirte in file
-
-
-
-
              break;
     case 2 : cout << '2' << endl;
     // search for various searchs with class search
@@ -108,6 +121,5 @@ int Crudmenu::checkfolder(string pathname){
 }
 
 string Crudmenu::getPath(){
-
 return "DATA";
 };
