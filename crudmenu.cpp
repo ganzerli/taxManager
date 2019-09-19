@@ -26,11 +26,10 @@ int Crudmenu::switchHandler(int num , string username){
     // needed login for the username
     Login login;
     Datafile datafile;
-
-
     string fileName = "lsakdjflksadjflksadjflkasdjf";
-
     vector<string> usrdtaresult;
+    string filepath ="./DATA/"+ username+'/';
+    string toWrite;
 
     int selected = 0;
     switch(num) {
@@ -49,17 +48,40 @@ int Crudmenu::switchHandler(int num , string username){
     // a something to store data
     login.getName();
     
-    usrdtaresult = datafile.userInput();
     // make the file with datum as name
-    // from the first input get date
+    usrdtaresult = datafile.userInput();
+    
+    // from the first input get end of date to use as filename
     fileName = usrdtaresult[0];
     fileName = fileName.substr(3,7);
+    filepath = filepath + fileName + ".txt";
+
     cout << usrdtaresult[0] << endl;
     cout << fileName.substr(3,7) << endl;
+    cout << filepath << endl;
 
-    cout << fileName << endl;
-    cout << "DATA INSERTED    DATA INSERTED    DATA INSERTED"<< endl;
+    
+    // open file and create if not existing
+    cout << "chekc for file" << filepath << endl;
+    
+    if(datafile.checkFile(filepath) != 1){
+        // create and write first line
+        cout << "no , file not existing create.." <<endl;
+        toWrite = datafile.dataToString(usrdtaresult);
+        ofstream outfile;
+        outfile.open(filepath);; 
+        outfile << toWrite << endl;
+        outfile.close();
+    }else{
+        //if file exists get inside of file and add the record
+    }
+   
+
     // build string to insert in the file
+
+
+    cout << "DATA INSERTED    DATA INSERTED    DATA INSERTED"<< endl;
+
     //check for file, create in case
     // wirte in file
              break;
