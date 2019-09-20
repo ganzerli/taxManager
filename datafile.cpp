@@ -1,4 +1,5 @@
 #include"datafile.h"
+#include"filetoarr.h"
 
 #include <iostream>
 #include <fstream> 
@@ -65,4 +66,36 @@ string Datafile::dataToString(vector<string> userInput){
     dataLine = dataLine + "<=/";
     cout << dataLine << endl;
     return dataLine;
+}
+
+//
+
+int Datafile::addRecord(string filepath , string newInput){
+    int inserted = 0;
+    Filetoarr getFileInfo;
+    string data;
+ 
+    // open file 
+    ifstream ifile;
+    ifile.open(filepath);
+
+    //file is there, get text
+    // retirn one string , rewriting..
+    vector<string> fileLines = getFileInfo.fileToVector(filepath);
+    //
+    // work in progress
+    //
+    //
+    for(string i : fileLines){
+        cout << "i = add record" << i << endl;
+        data = i + data ;
+    }
+    data = data + newInput;
+    cout << data << endl;
+    cout <<"data printed" << endl;
+    // crate instance to write to the file
+    ofstream outfile;
+    outfile.open(filepath);
+    outfile << data << endl;
+    return inserted;
 }

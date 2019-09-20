@@ -14,9 +14,7 @@ ifstream file(path);
 int linesNum = this->countLines(path);
 
 cout << "n //" << linesNum << "lines in file"<< path <<endl;
-
     static string rows[254];
-
 if (file.is_open()) {
     std::string line;
     std::string templine;
@@ -34,8 +32,6 @@ if (file.is_open()) {
 }
     return rows;
 }
-
-
 
 // not usable in c++
 int Filetoarr::countLines(string path){
@@ -55,7 +51,7 @@ int Filetoarr::countLines(string path){
 
 vector<string> Filetoarr::fileToVector(string path){
     // in login is used the path .. same as to array but to vecetor
-    string* arr = this->getLines(path);
+  //  string* arr = this->getLines(path);
     vector<string> stringVector;
     // add with while loop value to vector and retourn
         // init input file stream
@@ -85,7 +81,6 @@ vector<string> Filetoarr::fileToVector(string path){
 };    
 
 vector<string> Filetoarr::vectorToFile(vector<string> v){
-
         ofstream outfile;
         outfile.open("./TEST/login.txt");
     //open file

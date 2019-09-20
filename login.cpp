@@ -130,7 +130,7 @@ string Login::checkUsername(){
     }
     }//file check
 
-    //if found is 2 then, folder found, file found, user found return input or return null
+    //if found is 2 then, folder found, file found, 
     if(found != 2){
      // ask if insert the name if yes insert
      int response;

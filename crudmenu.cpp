@@ -24,7 +24,6 @@ using namespace std;
 
 int Crudmenu::switchHandler(int num , string username){
     // needed login for the username
-    Login login;
     Datafile datafile;
     string fileName = "lsakdjflksadjflksadjflkasdjf";
     vector<string> usrdtaresult;
@@ -35,19 +34,13 @@ int Crudmenu::switchHandler(int num , string username){
     switch(num) {
     case 1 : cout << "enter data selected.."<< username << endl; // prints "1"
     // see if there is a folder for the user, if not crate ,
-    // and add day and bill
-    
-
-    this->init(username);
+    if(mkdir("./DATA") == 0){
+            printf( " folder created in ./DATA" );
+    }
     // folder will be initialiyed..
-       
-    //needed
-    // get path from init.. return path ,crete folder in case not existing
-    //a file.. .. named ..-------v
-    //a something to get the data from user
-    // a something to store data
-    login.getName();
+    this->init(username);
     
+    // ask data to user
     // make the file with datum as name
     usrdtaresult = datafile.userInput();
     
@@ -56,16 +49,12 @@ int Crudmenu::switchHandler(int num , string username){
     fileName = fileName.substr(3,7);
     filepath = filepath + fileName + ".txt";
 
-    cout << usrdtaresult[0] << endl;
-    cout << fileName.substr(3,7) << endl;
     cout << filepath << endl;
-
-    
     // open file and create if not existing
     cout << "chekc for file" << filepath << endl;
     
     if(datafile.checkFile(filepath) != 1){
-        // create and write first line
+        // create and write first line FILE DOES NOT EXIST
         cout << "no , file not existing create.." <<endl;
         toWrite = datafile.dataToString(usrdtaresult);
         ofstream outfile;
@@ -74,17 +63,11 @@ int Crudmenu::switchHandler(int num , string username){
         outfile.close();
     }else{
         //if file exists get inside of file and add the record
+        toWrite = datafile.dataToString(usrdtaresult);
+        datafile.addRecord(filepath, toWrite);
     }
-   
 
-    // build string to insert in the file
-
-
-    cout << "DATA INSERTED    DATA INSERTED    DATA INSERTED"<< endl;
-
-    //check for file, create in case
-    // wirte in file
-             break;
+    break;
     case 2 : cout << '2' << endl;
     // search for various searchs with class search
              break;
