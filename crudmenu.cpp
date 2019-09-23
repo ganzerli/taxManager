@@ -1,6 +1,7 @@
 #include"crudmenu.h"
 #include"datafile.h"
 #include"login.h"
+#include"search.h"
 
 #include <iostream>
 #include <vector>
@@ -20,16 +21,20 @@
 // crate char arr from string
 #include <bits/stdc++.h> 
 
+
 using namespace std;
 
 int Crudmenu::switchHandler(int num , string username){
     // needed login for the username
+
     Datafile datafile;
+    Search search;
     string fileName = "lsakdjflksadjflksadjflkasdjf";
     vector<string> usrdtaresult;
-    string filepath ="./DATA/"+ username+'/';
+    string filepath ="./DATA/"+ username;
     string toWrite;
-
+    
+    //
     int selected = 0;
     switch(num) {
     case 1 : cout << "enter data selected.."<< username << endl; // prints "1"
@@ -47,7 +52,7 @@ int Crudmenu::switchHandler(int num , string username){
     // from the first input get end of date to use as filename
     fileName = usrdtaresult[0];
     fileName = fileName.substr(3,7);
-    filepath = filepath + fileName + ".txt";
+    filepath = filepath +'/'+ fileName + ".txt";
 
     cout << filepath << endl;
     // open file and create if not existing
@@ -70,6 +75,23 @@ int Crudmenu::switchHandler(int num , string username){
     break;
     case 2 : cout << '2' << endl;
     // search for various searchs with class search
+    // to have files and filenames
+    vector search.getFilesFrom(filepath);
+    // path of user, input if datum. datum
+    // check if file exists , return the existing files
+    // searchfile(string matter);
+    //if else ,,search,,
+    //needed
+    //makeble vector of strings from files
+    //what to search
+    //datum per datum
+    //..
+    //..
+    // data class in java catastrofic curva
+    // a rray of filenames. or vector
+    // number of filenames in new array
+    //split text amd insert in new array key date
+    //compact or print the result 
              break;
     }
     return selected;
