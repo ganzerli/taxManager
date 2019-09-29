@@ -1,4 +1,5 @@
 #include"search.h"
+#include"filetoarr.h"
 #include <sstream>
 #include <iostream>
 #include <fstream> 
@@ -36,7 +37,6 @@ vector<string> Search::getFilesFrom(string path){
                 sstm.str("");
                 possibleNames.push_back(possibleStringDate);
             }
-          
         }
         // open file if opens return insert datum in vector
     }
@@ -56,7 +56,7 @@ vector<string> Search::getFilesFrom(string path){
     //  YeRS.. from the date
     // needed function translating strings to int
 
-    return possibleNames;
+    return existingFiles;
 }
 
 inline bool Search::fileExistence(const string& name) {
@@ -66,4 +66,56 @@ inline bool Search::fileExistence(const string& name) {
     } else {
         return false;
     }   
+}
+
+int Search::getMenuInput(){
+    // get user input 
+    int input;
+    cin.clear();
+    cout << "search data from >> 1)datum  2)bill  3)notes  4)expenses  5)other" << endl;
+    cout << "select number 1 - 5"<< endl;
+    cin >> input;
+    cin.clear();
+    cin.ignore(10000, '\n');
+    cout << "number selected  " << input << endl;
+    return input;
+}
+
+vector<string> Search::getDaysVector(vector<string> existingFiles){
+    vector<string> daysVector;
+    // open files , split content , add in vector
+    Filetoarr filetoarr; 
+    char ch;
+    string tempString;
+    // iterate in the vector
+    for(vector<string>::iterator it = existingFiles.begin(); it != existingFiles.end(); ++it) {
+        // filetovector returns a vector of lines, month file is in a string together
+        string fileContent = filetoarr.fileToVector(*it)[0];
+        // build a string with the files contents , to then split
+        for(string::size_type i = 0; i < fileContent.size(); ++i) {
+            ch = fileContent[i];
+            tempString = tempString + ch;
+        }
+    }
+    //cout << tempString << endl;
+    string line;
+     
+       for(string::size_type i = 0; i < tempString.size(); ++i) {
+            line = line+tempString[i];
+            if(tempString[i-2] == '<' && tempString[i-1] == '=' && tempString[i] == '/'){
+                cout << line << endl;
+                daysVector.push_back(line);
+                line ="";
+            }
+        }
+    
+    return daysVector;
+}
+
+vector<string> Search::getInputDaysVector(vector<string> daysVector , int userInput){
+    // from vector of days from existing files , search and retourn days with content
+    vector<string> daysVec;
+
+
+    return daysVec;
 }

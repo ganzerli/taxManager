@@ -82,14 +82,12 @@ int Datafile::addRecord(string filepath , string newInput){
     //file is there, get text
     // retirn one string , rewriting..
     vector<string> fileLines = getFileInfo.fileToVector(filepath);
-    //
-    // work in progress
-    //
-    //
+
     for(string i : fileLines){
         cout << "i = add record" << i << endl;
         data = i + data ;
     }
+    
     data = data + newInput;
     cout << data << endl;
     cout <<"data printed" << endl;

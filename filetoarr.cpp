@@ -71,9 +71,9 @@ vector<string> Filetoarr::fileToVector(string path){
             }
             file.close();
             // print all values for vector
-                for (auto it = stringVector.begin(); it != stringVector.end(); ++it){ 
-                    cout << ' ' << *it << endl; 
-                } 
+            //    for (auto it = stringVector.begin(); it != stringVector.end(); ++it){ 
+            //       cout << ' ' << *it << endl; 
+            //   } 
         }else{
             cout << "unable to open file:" << path << endl;
         }
@@ -90,5 +90,5 @@ vector<string> Filetoarr::vectorToFile(vector<string> v){
     }
         outfile.close();
     //close fie
-    return copy;
+    return v;
 };

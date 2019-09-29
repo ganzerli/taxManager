@@ -25,75 +25,88 @@
 using namespace std;
 
 int Crudmenu::switchHandler(int num , string username){
-    // needed login for the username
 
-    Datafile datafile;
-    Search search;
-    string fileName = "lsakdjflksadjflksadjflkasdjf";
-    vector<string> usrdtaresult;
-    string filepath ="./DATA/"+ username;
-    string toWrite;
-    
-    //
-    int selected = 0;
+        //init variables
+        Datafile datafile;
+        Search search;
+        string fileName = "lsakdjflksadjflksadjflkasdjf";
+        vector<string> usrdtaresult;
+        string filepath ="./DATA/"+ username;
+        string toWrite;
+        int selected = 0;
+   
     switch(num) {
-    case 1 : cout << "enter data selected.."<< username << endl; // prints "1"
-    // see if there is a folder for the user, if not crate ,
-    if(mkdir("./DATA") == 0){
-            printf( " folder created in ./DATA" );
-    }
-    // folder will be initialiyed..
-    this->init(username);
-    
-    // ask data to user
-    // make the file with datum as name
-    usrdtaresult = datafile.userInput();
-    
-    // from the first input get end of date to use as filename
-    fileName = usrdtaresult[0];
-    fileName = fileName.substr(3,7);
-    filepath = filepath +'/'+ fileName + ".txt";
 
-    cout << filepath << endl;
-    // open file and create if not existing
-    cout << "chekc for file" << filepath << endl;
-    
-    if(datafile.checkFile(filepath) != 1){
-        // create and write first line FILE DOES NOT EXIST
-        cout << "no , file not existing create.." <<endl;
-        toWrite = datafile.dataToString(usrdtaresult);
-        ofstream outfile;
-        outfile.open(filepath);; 
-        outfile << toWrite << endl;
-        outfile.close();
-    }else{
-        //if file exists get inside of file and add the record
-        toWrite = datafile.dataToString(usrdtaresult);
-        datafile.addRecord(filepath, toWrite);
+    case 1 : 
+        cout << "enter data selected.."<< username << endl; // prints "1"
+
+        // see if there is a folder for the user, if not crate ,
+        if(mkdir("./DATA") == 0){
+                printf( " folder created in ./DATA" );
+        }
+        // folder will be initialiyed..
+        this->init(username);
+        
+        // ask data to user
+        // make the file with datum as name
+        usrdtaresult = datafile.userInput();
+        
+        // from the first input get end of date to use as filename
+        fileName = usrdtaresult[0];
+        fileName = fileName.substr(3,7);
+        filepath = filepath +'/'+ fileName + ".txt";
+
+        cout << filepath << endl;
+        // open file and create if not existing
+        cout << "chekc for file" << filepath << endl;
+        
+        if(datafile.checkFile(filepath) != 1){
+            // create and write first line FILE DOES NOT EXIST
+            cout << "no , file not existing create.." <<endl;
+            toWrite = datafile.dataToString(usrdtaresult);
+            ofstream outfile;
+            outfile.open(filepath);; 
+            outfile << toWrite << endl;
+            outfile.close();
+        }else{
+            //if file exists get inside of file and add the record
+            toWrite = datafile.dataToString(usrdtaresult);
+            datafile.addRecord(filepath, toWrite);
+        }
+
+        break;
+    case 2 : 
+        cout << '2' << endl;
+        // search for various searchs with class search
+        // to have files and filenames
+        vector<string> existingFiles = search.getFilesFrom(filepath);
+        cout << "second file" << existingFiles[1] << endl;
+        // path of user, input if datum. datum
+        int userInput = search.getMenuInput();
+        // user input
+        // open the files with the user input
+        // retourn vector with all strings of the days found
+        
+        vector<string> allDays = search.getDaysVector(existingFiles);
+        // vector allDays works fine
+        vector<string> daysSearched = search.getInputDaysVector(allDays , userInput);
+        
+        // searching
+            // for open files
+            // of all files split all days
+                //split the days in vector of strings
+                //return from the file a vector of days
+            
+            // get the vector of strings from the file and check which contains the text
+                //add to the vector of days to get
+            
+            //return a vector with the days containing the info
+
+            // search.print(input , dates allemal) prints things in decided order or interest of user
+        
+        break;
     }
 
-    break;
-    case 2 : cout << '2' << endl;
-    // search for various searchs with class search
-    // to have files and filenames
-    vector search.getFilesFrom(filepath);
-    // path of user, input if datum. datum
-    // check if file exists , return the existing files
-    // searchfile(string matter);
-    //if else ,,search,,
-    //needed
-    //makeble vector of strings from files
-    //what to search
-    //datum per datum
-    //..
-    //..
-    // data class in java catastrofic curva
-    // a rray of filenames. or vector
-    // number of filenames in new array
-    //split text amd insert in new array key date
-    //compact or print the result 
-             break;
-    }
     return selected;
 };
 
