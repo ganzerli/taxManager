@@ -80,7 +80,7 @@ int Crudmenu::switchHandler(int num , string username){
         // search for various searchs with class search
         // to have files and filenames
         vector<string> existingFiles = search.getFilesFrom(filepath);
-        cout << "second file" << existingFiles[1] << endl;
+        //cout << "second file" << existingFiles[1] << endl;
         // path of user, input if datum. datum
         int userInput = search.getMenuInput();
         // user input

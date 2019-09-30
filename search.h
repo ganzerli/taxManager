@@ -8,4 +8,5 @@ class Search {
     int getMenuInput();
     std::vector<std::string> getDaysVector(std::vector<std::string> existingFiles);
     std::vector<std::string> getInputDaysVector(std::vector<std::string> daysVector , int userInput);
+    std::vector<std::string> splitString(std::string day);
 };

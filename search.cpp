@@ -114,8 +114,73 @@ vector<string> Search::getDaysVector(vector<string> existingFiles){
 
 vector<string> Search::getInputDaysVector(vector<string> daysVector , int userInput){
     // from vector of days from existing files , search and retourn days with content
-    vector<string> daysVec;
+    vector<vector<string>> daysVec;
+    // split the vecotr string , get datum and user input
+    if (userInput == 1){
+        // datum display all data of day
+        //ask datum
+        cin.clear();
+        string date;
+        cout << "enter datum dd-mm-yyyy"<< endl;
+        cin >> date;
+        cin.clear();
+        cin.ignore(10000, '\n');
+        cout << "datum entered" << date <<endl;
+        //string in vector returns the position
+         vector<string> dayVec;
+         string tempDay;
+        // iterate throught the vector of strings
+         for(vector<string>::iterator it = daysVector.begin(); it != daysVector.end(); ++it) {
+            dayVec = splitString(*it);
+            // vector of all days in vector
+            daysVector.push_back(dayVec);
+        }
+        //days vector.. search for date and return
 
+
+        cout << "day vector index 0  " << dayVec[0] << endl;
+    }else{// not a datum
+        cout << "research for other type" << endl;
+    }
 
     return daysVec;
+}
+
+vector<string> Search::splitString(string day){
+    // from day string gives the vector of the day
+    vector<string> vectDay;
+    string tempString;
+    string tempDatum;
+    char ch;
+    
+    // cut out beginning ,
+    //get datum, saving chars
+    for(int i=3; i< 13; ++i){
+        tempDatum = tempDatum + day[i];
+    }
+    cout << "datum found  " << tempDatum <<endl;
+    vectDay.push_back(tempDatum);
+    tempDatum ="";
+
+    // i = 17 cutting the 13 chars of beginning and datum, and the following <//>
+    for(string::size_type i = 17; i < day.size(); ++i) {
+        // continue saving chars and save temp string in vector when <//> or <=/
+        //found the end exit
+        tempString = tempString + day[i];
+        // if <//> push in vector element and clear string
+        if(day[i+1] =='<' && day[i+2] =='/' && day[i+3] =='/' && day[i+4] =='>'){
+            //save tempString and count further
+            vectDay.push_back(tempString);
+           // cout << "adding in vector //==>  " << tempString << endl;
+            tempString = "";
+            i = i+4;
+        }
+    }
+    // take away the last chars
+    tempString = tempString.substr(0,tempString.size()-3);
+    vectDay.push_back(tempString);
+
+    cout << "Last temp string " << tempString << endl;
+    
+    return vectDay;
 }
