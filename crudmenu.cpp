@@ -89,7 +89,13 @@ int Crudmenu::switchHandler(int num , string username){
         
         vector<string> allDays = search.getDaysVector(existingFiles);
         // vector allDays works fine
-        vector<string> daysSearched = search.getInputDaysVector(allDays , userInput);
+        // return vector of vectors of all file possible 
+        vector<vector<string>> daysSearched = search.getVectorOfAllDaysPossible(allDays);
+        cout << daysSearched[0][0] << "day searched n 1" << endl;
+
+        int ret = search.printValues(daysSearched , userInput);
+
+        // pass user unput and vector to print 
         
         // searching
             // for open files

@@ -112,35 +112,16 @@ vector<string> Search::getDaysVector(vector<string> existingFiles){
     return daysVector;
 }
 
-vector<string> Search::getInputDaysVector(vector<string> daysVector , int userInput){
+vector<vector<string>> Search::getVectorOfAllDaysPossible(vector<string> daysVector){
     // from vector of days from existing files , search and retourn days with content
     vector<vector<string>> daysVec;
-    // split the vecotr string , get datum and user input
-    if (userInput == 1){
-        // datum display all data of day
-        //ask datum
-        cin.clear();
-        string date;
-        cout << "enter datum dd-mm-yyyy"<< endl;
-        cin >> date;
-        cin.clear();
-        cin.ignore(10000, '\n');
-        cout << "datum entered" << date <<endl;
-        //string in vector returns the position
-         vector<string> dayVec;
-         string tempDay;
-        // iterate throught the vector of strings
-         for(vector<string>::iterator it = daysVector.begin(); it != daysVector.end(); ++it) {
-            dayVec = splitString(*it);
-            // vector of all days in vector
-            daysVector.push_back(dayVec);
-        }
-        //days vector.. search for date and return
-
-
-        cout << "day vector index 0  " << dayVec[0] << endl;
-    }else{// not a datum
-        cout << "research for other type" << endl;
+    // make days vector
+    vector<string> dayVec;
+    // iterate throught the vector of strings
+    for(vector<string>::iterator it = daysVector.begin(); it != daysVector.end(); ++it) {
+        dayVec = splitString(*it);
+        // vector of all days in vector
+        daysVec.push_back(dayVec);
     }
 
     return daysVec;
@@ -158,7 +139,7 @@ vector<string> Search::splitString(string day){
     for(int i=3; i< 13; ++i){
         tempDatum = tempDatum + day[i];
     }
-    cout << "datum found  " << tempDatum <<endl;
+   // cout << "datum found  " << tempDatum <<endl;
     vectDay.push_back(tempDatum);
     tempDatum ="";
 
@@ -180,7 +161,52 @@ vector<string> Search::splitString(string day){
     tempString = tempString.substr(0,tempString.size()-3);
     vectDay.push_back(tempString);
 
-    cout << "Last temp string " << tempString << endl;
+   // cout << "Last temp string " << tempString << endl;
     
     return vectDay;
+}
+
+int Search::printValues(vector<vector<string>> allDays, int userInput){
+    vector<string> dayVect;
+    string date;
+    string options[] = {"DATE","BILL","NOTES","EXPENSES","OTHER"};
+
+    if(userInput == 1){
+        // ASK DATUM
+        cin.clear();
+        cout << "enter datum dd-mm-yyyy"<< endl;
+        cin >> date;
+        cin.clear();
+        cin.ignore(10000, '\n');
+        cout << "datum entered" << date <<endl;
+        ////
+        bool found = false;
+        //iterate throught ALLdays
+        for(vector<vector<string>>::iterator it = allDays.begin(); it != allDays.end(); ++it){
+            // collect from the vector of all vector of 1 day
+           dayVect = *it;
+           // CHECK DATUM FROM USER INPUT
+            if(date == dayVect[0]){
+                // iterate throught array of options
+                 for(int i=0; i < (sizeof(options)/sizeof(*options)); i++){
+                    // print element in arr
+                    cout << options[i] << " //>> "<< dayVect[i] <<endl;
+                }
+                found = true;
+            }
+        }
+        if(!found){
+            cout << " date  " << date << "  not found" << endl;
+        }
+    }else{ //if date to search
+    // else ask and print the other values with the datums
+    //iteate for the days
+        for(vector<vector<string>>::iterator it = allDays.begin(); it != allDays.end(); ++it){
+            dayVect = *it;
+            cout << dayVect[userInput-1] << " note or expenses of date " << dayVect[0] << endl;
+        }
+    }
+
+    
+return 1;
 }
