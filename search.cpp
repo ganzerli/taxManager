@@ -199,7 +199,7 @@ int Search::printValues(vector<vector<string>> allDays, int userInput){
         if(!found){
             cout << " date  " << date << "  not found" << endl;
         }
-    }else{ //if date to search
+    }else{ //if not date to search
     // else ask and print the other values with the datums
       cin.clear();
         cout << "enter word to search"<< endl;
@@ -207,7 +207,11 @@ int Search::printValues(vector<vector<string>> allDays, int userInput){
         cin.clear();
         cin.ignore(10000, '\n');
         cout << "datum entered" << word <<endl;
+        bool found = false;
     //iteate for the days
+    // have a vectorvector to save the result and print..
+        vector<vector<string>> vecWordFound;
+        
         for(vector<vector<string>>::iterator it = allDays.begin(); it != allDays.end(); ++it){
             dayVect = *it;
             cout << dayVect[userInput-1] << " note or expenses of date " << dayVect[0] << endl;
@@ -215,31 +219,56 @@ int Search::printValues(vector<vector<string>> allDays, int userInput){
             // if word found in other user input display with user input and datum
             // function searching the word
             // if word in , save to vector
-            searchWord(word , dayVect);
-
+            if( searchWord(word , dayVect) == 1){
+                // word found in vector..
+                //save vector
+                found = true;
+                vecWordFound.push_back(dayVect);
+            }
         }
-        // print the vector with user preferences
-    }
+        // print with preferences
+        int index = 0;
+        string part;
+        if(found){
+            //cout << "first in vector //>>" << vecWordFound[0][userInput-1] << endl;
+            // print the vector with user preferences
+            for(vector<vector<string>>::iterator it = vecWordFound.begin() ; it != vecWordFound.end() ; ++it){
+                dayVect = *it;
+                // print content of every vector
+                cout << "#@#@#@#@#@#@#@#@#@#@#@#@#@#@#@#@#@#@#@#@#@#@#@#@#@#@#@#@" << endl;
+                cout << "printing data of day " << dayVect[0] << endl;
+                for(vector<string>::iterator ir = dayVect.begin() ; ir != dayVect.end(); ++ir){
+                    part = *ir;
+                    cout << options[index] << "  IS  "<< part << endl;
+                    index++;
+                }
+                index = 0;
+                cout << "#@#@#@#@#@#@#@#@#@#@#@#@#@#@#@#@#@#@#@#@#@#@#@#@#@#@#@#@" << endl;
+                
+            }
+        }else{
+            cout << "word" << word << "  not found !!" << endl;
+        }
+    }//user input if 1 or else
 
-    
 return 1;
 }
 
-vector<string> Search::searchWord(string word , vector<string>day){
-    vector<string> dayVect;
+
+int Search::searchWord(string word , vector<string>day){
     string tempString;
+    int result = 0;
     // looping in the vector
     for(vector<string>::iterator it = day.begin(); it != day.end(); ++it){
         string daySection = *it;
         // loop in day section
         cout << "searching in "<< *it << "  ..word.. " <<word<< endl;
-        searchWordInString(word , daySection);
-        
-
-        // load temp string until " " and get the inside of " " " "
+        if(searchWordInString(word , daySection) == 1 ){
+            // add the vector to the results vector
+            result = 1 ;
+        }
     }
-
-    return dayVect; 
+    return result; 
 }
 
 int Search::searchWordInString(string word , string sentence){
@@ -265,14 +294,12 @@ int Search::searchWordInString(string word , string sentence){
                         found = false;
                         tempString ="";
                     }
-                    cout << "temp string " <<  tempString << endl;
+                   // cout << "temp string " <<  tempString << endl;
                     if(tempString == word){
                     // EXIT ALL RETURN OK
-                    cout << "WORD FOUND !!" << endl;
-                    result = 1;
-                    cout << "WORD " <<  word <<" FOUND !!" << endl;
-                    cout << "WORD FOUND !!" << endl;
-
+                        result = 1;
+                        cout << "WORD " <<  word <<" FOUND !!" << endl;
+                        tempString == "";
                     }
                 increment++;
                 }
