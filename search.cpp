@@ -170,6 +170,7 @@ int Search::printValues(vector<vector<string>> allDays, int userInput){
     vector<string> dayVect;
     string date;
     string options[] = {"DATE","BILL","NOTES","EXPENSES","OTHER"};
+    string word;
 
     if(userInput == 1){
         // ASK DATUM
@@ -200,13 +201,86 @@ int Search::printValues(vector<vector<string>> allDays, int userInput){
         }
     }else{ //if date to search
     // else ask and print the other values with the datums
+      cin.clear();
+        cout << "enter word to search"<< endl;
+        cin >> word;
+        cin.clear();
+        cin.ignore(10000, '\n');
+        cout << "datum entered" << word <<endl;
     //iteate for the days
         for(vector<vector<string>>::iterator it = allDays.begin(); it != allDays.end(); ++it){
             dayVect = *it;
             cout << dayVect[userInput-1] << " note or expenses of date " << dayVect[0] << endl;
+            // for every day check if the word is in , if that print day or few
+            // if word found in other user input display with user input and datum
+            // function searching the word
+            // if word in , save to vector
+            searchWord(word , dayVect);
+
         }
+        // print the vector with user preferences
     }
 
     
 return 1;
+}
+
+vector<string> Search::searchWord(string word , vector<string>day){
+    vector<string> dayVect;
+    string tempString;
+    // looping in the vector
+    for(vector<string>::iterator it = day.begin(); it != day.end(); ++it){
+        string daySection = *it;
+        // loop in day section
+        cout << "searching in "<< *it << "  ..word.. " <<word<< endl;
+        searchWordInString(word , daySection);
+        
+
+        // load temp string until " " and get the inside of " " " "
+    }
+
+    return dayVect; 
+}
+
+int Search::searchWordInString(string word , string sentence){
+    int result = 0;
+    int index = 0;
+    int increment=0;
+    string tempString;
+    bool found = false;
+
+        for(char& c : sentence) {
+            if(c == word[0]){
+                // check every char base index until " "
+                //"exampleq" sentence
+                //"exampler" word
+                // c stay the fist char
+                found = true;
+                while(sentence[index+increment] != ' ' && index+increment < sentence.size() && found){
+                    //check the other chars in base of increment to loop throught word
+                    if(sentence[index+increment] == word[increment]){
+                        found = true;
+                        tempString += sentence[index+increment];
+                    }else{
+                        found = false;
+                        tempString ="";
+                    }
+                    cout << "temp string " <<  tempString << endl;
+                    if(tempString == word){
+                    // EXIT ALL RETURN OK
+                    cout << "WORD FOUND !!" << endl;
+                    result = 1;
+                    cout << "WORD " <<  word <<" FOUND !!" << endl;
+                    cout << "WORD FOUND !!" << endl;
+
+                    }
+                increment++;
+                }
+                // if the word is same as searched return
+                increment = 0;
+            }
+            // index op sentence increase
+            index++;
+        }
+    return result;
 }

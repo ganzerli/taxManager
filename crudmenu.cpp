@@ -75,6 +75,9 @@ int Crudmenu::switchHandler(int num , string username){
         }
 
         break;
+    case 3 :
+        cout <<"case 3 REKENEN" << endl;
+        break;
     case 2 : 
         cout << '2' << endl;
         // search for various searchs with class search
@@ -109,8 +112,9 @@ int Crudmenu::switchHandler(int num , string username){
             //return a vector with the days containing the info
 
             // search.print(input , dates allemal) prints things in decided order or interest of user
-        
         break;
+// case 3 does not work all variables to declare
+
     }
 
     return selected;
