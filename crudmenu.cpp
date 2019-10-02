@@ -100,6 +100,7 @@ int Crudmenu::switchHandler(int num , string username){
         selected = rekenen.getDateMenu();
         if( selected == 0){
             cout << "print all days with rekening" << endl;
+            // same as with span but with all
         }else{
             // string* with 2 datums string
             dates = rekenen.getDateSpan();

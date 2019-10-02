@@ -72,17 +72,17 @@ int Rekenen::printBill(vector<vector<string>> daysBill){
     int resultBills=0;
     int resultExpenses=0;
     int amountBill=0;
-    int amountExpense=0;
+    int amountExpenses=0;
 
           // having the dates with bill in vector
         for(vector<vector<string>>::iterator i = daysBill.begin(); i != daysBill.end(); ++i){
             // @ OVERWRITE dayVect vector<string>
             dayVect =  *i;
             amountBill = ifBill(dayVect[1]);
-            amountExpense = ifBill(dayVect[3]);
-            cout << dayVect[0] << "has bill of " << amountBill << "and expenses of " << amountExpense << endl;
+            amountExpenses = ifBill(dayVect[3]);
+            cout << dayVect[0] << "has bill of " << amountBill << "and expenses of " << amountExpenses << endl;
             resultBills+=amountBill;
-            amountExpense+=amountExpense;
+            resultExpenses+=amountExpenses;
         }
         cout << "@@@@@@@@@@@@@@@@@@@@@@@@"<< endl;
         cout << "total amount of bills" << resultBills << endl;
