@@ -118,14 +118,13 @@ int Crudmenu::switchHandler(int num , string username){
                 }
             }
         }
+        
+        
+        rekenen.printBill(daysWithBill);
 
-        // having the dates with bill in vector
-        for(vector<vector<string>>::iterator i = daysWithBill.begin(); i != daysWithBill.end(); ++i){
-            // @ OVERWRITE dayVect vector<string>
-            dayVect =  *i;
-            cout << dayVect[0] << "has bill of " << dayVect[1] << endl;
-        }
+  
         // print all datums with bills and expenses
+
         // print after that the amount total of bills and ask to calculate the btw for bill and expenses
         // display and give forecast for amount taxes to pay !!! 
         break;

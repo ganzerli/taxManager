@@ -1,5 +1,6 @@
 #include"rekenen.h"
 #include <iostream>
+#include <vector>
 // check if digit
 #include <ctype.h>
 
@@ -64,3 +65,39 @@ int Rekenen::ifBill(string dayBillRecord){
 
 return result;
 }
+
+
+int Rekenen::printBill(vector<vector<string>> daysBill){
+    vector<string>dayVect;
+    int resultBills=0;
+    int resultExpenses=0;
+    int amountBill=0;
+    int amountExpense=0;
+
+          // having the dates with bill in vector
+        for(vector<vector<string>>::iterator i = daysBill.begin(); i != daysBill.end(); ++i){
+            // @ OVERWRITE dayVect vector<string>
+            dayVect =  *i;
+            amountBill = ifBill(dayVect[1]);
+            amountExpense = ifBill(dayVect[3]);
+            cout << dayVect[0] << "has bill of " << amountBill << "and expenses of " << amountExpense << endl;
+            resultBills+=amountBill;
+            amountExpense+=amountExpense;
+        }
+        cout << "@@@@@@@@@@@@@@@@@@@@@@@@"<< endl;
+        cout << "total amount of bills" << resultBills << endl;
+        cout << "total amount of expenses" << resultExpenses << endl;
+        cout << "@@@@@@@@@@@@@@@@@@@@@@@@@" << endl;
+
+        cout <<"btw =>"<< (resultBills*21)/ 100 << endl;
+        cout <<"btw train=>"<< (resultExpenses*9)/ 100 << endl;
+
+        cout << "@@@@@@@@@@@@@@@@@@@@@@@@" << endl;
+        cout << "MINISTERO MASSIMO GANZERLI" << endl;
+        cout << "@@@@@@@@@@@@@@@@@@@@@@@@" << endl;
+    
+        cout << "PAGA ";
+        cout <<( (resultBills*21)/ 100) - ( (resultExpenses*9)/ 100) << endl;
+    
+    return 1;
+};
