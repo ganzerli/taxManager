@@ -26,3 +26,22 @@ int Rekenen::getDateMenu(){
     // needed datum format and datum check
     return result;
 }
+
+string* Rekenen::getDateSpan(){
+    // ask day span and insert in array
+    static string arr[2];
+
+    cin.clear();
+    cout << "insert date beginning search"<< endl;
+    cin >> arr[0];
+    cout << "insert date ending search"<< endl;
+    cin >> arr[1];
+    cin.clear();
+    cin.ignore(10000, '\n');
+    cout << "selected  from  " << arr[0] << "to" << arr[1] << endl;
+    
+    return arr;
+    // check if are datums and which is first which after
+
+}
+

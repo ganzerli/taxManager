@@ -43,6 +43,7 @@ int Crudmenu::switchHandler(int num , string username){
         // init variables case 3
         vector<string> datumSpan;
         Rekenen rekenen;
+        string* dates;
         
    
     switch(num) {
@@ -102,8 +103,17 @@ int Crudmenu::switchHandler(int num , string username){
             cout << "print all days with rekening" << endl;
         }else{
             // load in vector only datum span
-            //rekenen.getDateSpan();
             
+            dates = rekenen.getDateSpan();
+            // check wich days are in the datum span
+            // invert the datum cast int and compare yyyymmdd
+            search.vectFromDates(dates , daysSearched);
+            //DATUM format datum(string) ret int string zonder -
+            // 20190830 < 20190831 < 20190901  
+            // keep 0
+            //  std::string str("123");
+            // int n = std::stoi(str);
+            //with iostream and string
         }
         
         // split vector from datum begin

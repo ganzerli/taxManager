@@ -1,15 +1,18 @@
 #include<string>
 #include<vector>
 
+using namespace std;
+
 class Search {
     public:
-    std::vector<std::string> getFilesFrom(std::string path);
-    inline bool fileExistence(const std::string& name);
+    vector<string> getFilesFrom(string path);
+    inline bool fileExistence(const string& name);
     int getMenuInput();
-    std::vector<std::string> getDaysVector(std::vector<std::string> existingFiles);
-    std::vector<std::vector<std::string>> getVectorOfAllDaysPossible(std::vector<std::string> daysVector);
-    std::vector<std::string> splitString(std::string day);
-    int printValues(std::vector<std::vector<std::string>> vectorOfAllDays, int userInput);
-    int searchWord(std::string word , std::vector<std::string>day);
-    int searchWordInString(std::string word , std::string sentence);
+    vector<string> getDaysVector(vector<string> existingFiles);
+    vector<vector<string>> getVectorOfAllDaysPossible(vector<string> daysVector);
+    vector<vector<string>> vectFromDates(string* arr2dates , vector<vector<string>> allDays);
+    vector<string> splitString(string day);
+    int printValues(vector<vector<string>> vectorOfAllDays, int userInput);
+    int searchWord(string word , vector<string>day);
+    int searchWordInString(string word , string sentence);
 };
