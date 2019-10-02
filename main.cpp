@@ -40,6 +40,7 @@ int main (){
         cout << " welcome  " << login.getName() << " choose an option for the data management" << endl;
         cout << "1 >> write to file " << endl;
         cout << "2 >> find  " << endl;
+        cout << "3 >> rekenen  " << endl;
         
         int input;
         cin >> input;

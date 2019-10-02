@@ -2,6 +2,7 @@
 #include"datafile.h"
 #include"login.h"
 #include"search.h"
+#include"rekenen.h"
 
 #include <iostream>
 #include <vector>
@@ -26,7 +27,7 @@ using namespace std;
 
 int Crudmenu::switchHandler(int num , string username){
 
-        //init variables
+        //init variables case 1
         Datafile datafile;
         Search search;
         string fileName = "lsakdjflksadjflksadjflkasdjf";
@@ -34,6 +35,15 @@ int Crudmenu::switchHandler(int num , string username){
         string filepath ="./DATA/"+ username;
         string toWrite;
         int selected = 0;
+        // init variables case 2
+        vector<string> existingFiles;
+        vector<string> allDays;
+        vector<vector<string>> daysSearched;
+
+        // init variables case 3
+        vector<string> datumSpan;
+        Rekenen rekenen;
+        
    
     switch(num) {
 
@@ -77,12 +87,42 @@ int Crudmenu::switchHandler(int num , string username){
         break;
     case 3 :
         cout <<"case 3 REKENEN" << endl;
+        // get vector of vectors , 
+        existingFiles = search.getFilesFrom(filepath);
+        
+        // === >> int userInput = search.getMenuInput();
+        // user input
+        allDays = search.getDaysVector(existingFiles);
+        daysSearched = search.getVectorOfAllDaysPossible(allDays);
+        cout << daysSearched[0][0] << "day searched n 1" << endl;
+        //ask datum
+        selected = rekenen.getDateMenu();
+        if( selected == 0){
+            // keep all days possible
+            cout << "print all days with rekening" << endl;
+        }else{
+            // load in vector only datum span
+            //rekenen.getDateSpan();
+            
+        }
+        
+        // split vector from datum begin
+        // add to vector all rest until datum end
+ 
+        // return vector of vectors of all file possible 
+
+
+        //int ret = rekenen.printValues(daysSearched , userInput);
+
+        // loop for bill if there is a number
+        // loop for expenses if there are numbers
+        // print all days with bill , amount of bills, expenses together, taxes and opzitting 
         break;
     case 2 : 
         cout << '2' << endl;
         // search for various searchs with class search
         // to have files and filenames
-        vector<string> existingFiles = search.getFilesFrom(filepath);
+        existingFiles = search.getFilesFrom(filepath);
         //cout << "second file" << existingFiles[1] << endl;
         // path of user, input if datum. datum
         int userInput = search.getMenuInput();
@@ -90,10 +130,10 @@ int Crudmenu::switchHandler(int num , string username){
         // open the files with the user input
         // retourn vector with all strings of the days found
         
-        vector<string> allDays = search.getDaysVector(existingFiles);
+        allDays = search.getDaysVector(existingFiles);
         // vector allDays works fine
         // return vector of vectors of all file possible 
-        vector<vector<string>> daysSearched = search.getVectorOfAllDaysPossible(allDays);
+        daysSearched = search.getVectorOfAllDaysPossible(allDays);
         cout << daysSearched[0][0] << "day searched n 1" << endl;
 
         int ret = search.printValues(daysSearched , userInput);
@@ -110,10 +150,8 @@ int Crudmenu::switchHandler(int num , string username){
                 //add to the vector of days to get
             
             //return a vector with the days containing the info
-
             // search.print(input , dates allemal) prints things in decided order or interest of user
         break;
-// case 3 does not work all variables to declare
 
     }
 
