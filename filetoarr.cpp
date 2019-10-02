@@ -50,30 +50,19 @@ int Filetoarr::countLines(string path){
 }
 
 vector<string> Filetoarr::fileToVector(string path){
-    // in login is used the path .. same as to array but to vecetor
-  //  string* arr = this->getLines(path);
+
     vector<string> stringVector;
-    // add with while loop value to vector and retourn
-        // init input file stream
-        std::ifstream file(path);
+    ifstream file(path);
 
         if (file.is_open()) {
             std::string line;
             std::string templine;
-         //   int counter = 0;
+         
             while (getline(file, line)) {
-                // using printf() in all tests for consistency
-                //printf("%s", line.c_str());
                 templine = line.c_str();
                 stringVector.push_back(templine);
-              //  rows[counter] = templine; 
-              //  counter++;
             }
             file.close();
-            // print all values for vector
-            //    for (auto it = stringVector.begin(); it != stringVector.end(); ++it){ 
-            //       cout << ' ' << *it << endl; 
-            //   } 
         }else{
             cout << "unable to open file:" << path << endl;
         }

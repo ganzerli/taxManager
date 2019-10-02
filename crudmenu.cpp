@@ -39,11 +39,15 @@ int Crudmenu::switchHandler(int num , string username){
         vector<string> existingFiles;
         vector<string> allDays;
         vector<vector<string>> daysSearched;
+    
 
         // init variables case 3
         vector<string> datumSpan;
         Rekenen rekenen;
         string* dates;
+        vector<string> dayVect;
+        vector<vector<string>> dateSpanDays; // container
+        vector<vector<string>> daysWithBill; // output
         
    
     switch(num) {
@@ -88,45 +92,42 @@ int Crudmenu::switchHandler(int num , string username){
         break;
     case 3 :
         cout <<"case 3 REKENEN" << endl;
-        // get vector of vectors , 
         existingFiles = search.getFilesFrom(filepath);
-        
-        // === >> int userInput = search.getMenuInput();
-        // user input
         allDays = search.getDaysVector(existingFiles);
         daysSearched = search.getVectorOfAllDaysPossible(allDays);
         cout << daysSearched[0][0] << "day searched n 1" << endl;
         //ask datum
         selected = rekenen.getDateMenu();
         if( selected == 0){
-            // keep all days possible
             cout << "print all days with rekening" << endl;
         }else{
-            // load in vector only datum span
-            
+            // string* with 2 datums string
             dates = rekenen.getDateSpan();
-            // check wich days are in the datum span
-            // invert the datum cast int and compare yyyymmdd
-            search.vectFromDates(dates , daysSearched);
-            //DATUM format datum(string) ret int string zonder -
-            // 20190830 < 20190831 < 20190901  
-            // keep 0
-            //  std::string str("123");
-            // int n = std::stoi(str);
-            //with iostream and string
+            // return days between 2 dates
+            dateSpanDays = search.vectFromDates(dates , daysSearched);
+            for(vector<vector<string>>::iterator it = dateSpanDays.begin(); it != dateSpanDays.end(); ++it){
+                dayVect =  *it;
+                // @ OVERWRITE int selected
+                selected = rekenen.ifBill(dayVect[1]);
+                if(selected == 0){
+                    cout << "amount bill not found in  //>>" << dayVect[1] << endl;
+                }else{
+                    // bill found
+                    cout << "amount bill of"<< selected <<" found in" << dayVect[1] << endl;
+                    daysWithBill.push_back(dayVect);
+                }
+            }
         }
-        
-        // split vector from datum begin
-        // add to vector all rest until datum end
- 
-        // return vector of vectors of all file possible 
 
-
-        //int ret = rekenen.printValues(daysSearched , userInput);
-
-        // loop for bill if there is a number
-        // loop for expenses if there are numbers
-        // print all days with bill , amount of bills, expenses together, taxes and opzitting 
+        // having the dates with bill in vector
+        for(vector<vector<string>>::iterator i = daysWithBill.begin(); i != daysWithBill.end(); ++i){
+            // @ OVERWRITE dayVect vector<string>
+            dayVect =  *i;
+            cout << dayVect[0] << "has bill of " << dayVect[1] << endl;
+        }
+        // print all datums with bills and expenses
+        // print after that the amount total of bills and ask to calculate the btw for bill and expenses
+        // display and give forecast for amount taxes to pay !!! 
         break;
     case 2 : 
         cout << '2' << endl;

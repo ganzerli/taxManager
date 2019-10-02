@@ -136,9 +136,7 @@ vector<vector<string>> Search::vectFromDates(string* twoDates , vector<vector<st
     // compare dates
     for(vector<vector<string>>::iterator it = allDays.begin(); it != allDays.end(); ++it){
         dayVector = *it;
-    
         datumf = datum.formatDatum(dayVector[0]);
-
         // needed dates translate and dates compare
         if(datumf > datum.formatDatum(twoDates[0])  && datumf < datum.formatDatum(twoDates[1]) ){
            cout << "date "<< dayVector[0] <<" between" << twoDates[0] << "  and  " << twoDates[1] << endl;

@@ -1,5 +1,7 @@
 #include"rekenen.h"
 #include <iostream>
+// check if digit
+#include <ctype.h>
 
 using namespace std;
 
@@ -45,3 +47,20 @@ string* Rekenen::getDateSpan(){
 
 }
 
+
+int Rekenen::ifBill(string dayBillRecord){
+    // returns amount of bill
+    int result = 0;
+    string tempString = "0";
+    //search in the string if there is a number
+    for(char c : dayBillRecord){
+        if(isdigit(c)) {
+            tempString += c;
+        }
+    }
+    // casting int the string of number found
+    result = stoi(tempString);
+    cout << result << endl;
+
+return result;
+}
