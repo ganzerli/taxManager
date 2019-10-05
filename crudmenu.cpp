@@ -171,6 +171,7 @@ int Crudmenu::switchHandler(int num , string username){
 
 string Crudmenu::init(string username){
     // if username folder and file does not exist create
+        //checkFplder("./DATA")
     // data folder must be already specified
     // find the path for the folder from username
     stringstream strstream;
@@ -178,6 +179,8 @@ string Crudmenu::init(string username){
     string pathcomplete = strstream.str();
     
     cout << checkfolder(pathcomplete) << "from checkfoldrer" << endl;
+    cout << checkfolder("./DATA/") << endl;
+    
 
     if (checkfolder(pathcomplete) == 0){
 
