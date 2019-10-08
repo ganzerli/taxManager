@@ -218,7 +218,7 @@ int Search::printValues(vector<vector<string>> allDays, int userInput){
         if(!found){
             cout << " date  " << date << "  not found" << endl;
         }
-    }else{ //if not date to search
+    }else{ //if not date to search 
     // else ask and print the other values with the datums
       cin.clear();
         cout << "enter word to search"<< endl;
@@ -314,8 +314,9 @@ int Search::searchWordInString(string word , string sentence){
                         tempString ="";
                     }
                    // cout << "temp string " <<  tempString << endl;
+                   // works also if part of the word, makelik same with, and next char is empty then is not only part 
                     if(tempString == word){
-                    // EXIT ALL RETURN OK
+                        // EXIT ALL RETURN OK
                         result = 1;
                         cout << "WORD " <<  word <<" FOUND !!" << endl;
                         tempString == "";

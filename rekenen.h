@@ -4,7 +4,8 @@
 class Rekenen {
     public:
     int getDateMenu();
-    int ifBill(std::string dayBillRecord);
+    float ifBill(std::string dayBillRecord);
     int printBill(std::vector<std::vector<std::string>> daysWithRekening);
     std::string* getDateSpan();
+    float inputBtw();
 };

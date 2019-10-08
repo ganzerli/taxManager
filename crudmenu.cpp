@@ -48,6 +48,8 @@ int Crudmenu::switchHandler(int num , string username){
         vector<string> dayVect;
         vector<vector<string>> dateSpanDays; // container
         vector<vector<string>> daysWithBill; // output
+        float rekening;
+        float expenses;
         
    
     switch(num) {
@@ -109,12 +111,16 @@ int Crudmenu::switchHandler(int num , string username){
             for(vector<vector<string>>::iterator it = dateSpanDays.begin(); it != dateSpanDays.end(); ++it){
                 dayVect =  *it;
                 // @ OVERWRITE int selected
-                selected = rekenen.ifBill(dayVect[1]);
+                rekening = rekenen.ifBill(dayVect[1]);
+                expenses = rekenen.ifBill(dayVect[3]);
+
                 if(selected == 0){
-                    cout << "amount bill not found in  //>>" << dayVect[1] << endl;
+                    cout << "amount bill not found in  //>>" << rekening << endl;
+                    cout << "and amount expenses not found in  //>>" << expenses << endl;
                 }else{
                     // bill found
-                    cout << "amount bill of"<< selected <<" found in" << dayVect[1] << endl;
+                    cout << "amount bill of "<< rekening <<" found in" << rekening << endl;
+                    cout << "and amount expenses " << expenses << endl;
                     daysWithBill.push_back(dayVect);
                 }
             }
@@ -179,7 +185,7 @@ string Crudmenu::init(string username){
     string pathcomplete = strstream.str();
     
     cout << checkfolder(pathcomplete) << "from checkfoldrer" << endl;
-    cout << checkfolder("./DATA/") << endl;
+    cout << checkfolder("./DATA") << endl;
     
 
     if (checkfolder(pathcomplete) == 0){

@@ -5,6 +5,7 @@
 #include <ctype.h>
 
 using namespace std;
+//has bill of
 
 int Rekenen::getDateMenu(){
    int result = 0;
@@ -49,19 +50,18 @@ string* Rekenen::getDateSpan(){
 }
 
 
-int Rekenen::ifBill(string dayBillRecord){
+float Rekenen::ifBill(string dayBillRecord){
     // returns amount of bill
-    int result = 0;
+    float result = 0.00;
     string tempString = "0";
     //search in the string if there is a number
     for(char c : dayBillRecord){
-        if(isdigit(c)) {
+        if(isdigit(c) || c=='.') {
             tempString += c;
         }
     }
     // casting int the string of number found
-    result = stoi(tempString);
-    cout << result << endl;
+    result = stof(tempString);
 
 return result;
 }
@@ -69,10 +69,13 @@ return result;
 
 int Rekenen::printBill(vector<vector<string>> daysBill){
     vector<string>dayVect;
-    int resultBills=0;
-    int resultExpenses=0;
-    int amountBill=0;
-    int amountExpenses=0;
+    float resultBills=0;
+    float resultExpenses=0;
+    float amountBill=0;
+    float amountExpenses=0;
+
+    float  BTWHIGH;
+    float  BTWLOW;
 
           // having the dates with bill in vector
         for(vector<vector<string>>::iterator i = daysBill.begin(); i != daysBill.end(); ++i){
@@ -80,7 +83,7 @@ int Rekenen::printBill(vector<vector<string>> daysBill){
             dayVect =  *i;
             amountBill = ifBill(dayVect[1]);
             amountExpenses = ifBill(dayVect[3]);
-            cout << dayVect[0] << "has bill of " << amountBill << "and expenses of " << amountExpenses << endl;
+           // cout << dayVect[0] << "has bill of " << amountBill << "  and expenses of " << amountExpenses << endl;
             resultBills+=amountBill;
             resultExpenses+=amountExpenses;
         }
@@ -88,16 +91,37 @@ int Rekenen::printBill(vector<vector<string>> daysBill){
         cout << "total amount of bills" << resultBills << endl;
         cout << "total amount of expenses" << resultExpenses << endl;
         cout << "@@@@@@@@@@@@@@@@@@@@@@@@@" << endl;
+        // ask user quantity of btw
+        cout << "ENTER HIGHER BTW AMOUNT" << endl;
+        BTWHIGH = inputBtw();
 
-        cout <<"btw =>"<< (resultBills*21)/ 100 << endl;
-        cout <<"btw train=>"<< (resultExpenses*9)/ 100 << endl;
+        cout << "ENTER LOWER BTW AMOUNT" << endl;
+        BTWLOW = inputBtw(); 
+
+        
+        cout <<"btw =>"<< (resultBills*BTWHIGH)/ 100 << endl;
+        cout <<"btw train=>"<< (resultExpenses*BTWLOW)/ 100 << endl;
 
         cout << "@@@@@@@@@@@@@@@@@@@@@@@@" << endl;
         cout << "MINISTERO MASSIMO GANZERLI" << endl;
         cout << "@@@@@@@@@@@@@@@@@@@@@@@@" << endl;
     
         cout << "PAGA ";
-        cout <<( (resultBills*21)/ 100) - ( (resultExpenses*9)/ 100) << endl;
+        cout <<( (resultBills*BTWHIGH)/ 100) - ( (resultExpenses* BTWLOW)/ 100) << endl;
     
     return 1;
 };
+
+
+float Rekenen::inputBtw(){
+    float result = 0.00;
+    cin.clear();
+    cout << "ENTER BTW AMOUNT |FORMAT 0.00| " << endl;
+    cin >> result;
+    cin.clear();
+    cin.ignore(10000, '\n');
+    return result;
+}
+ 
+
+ 

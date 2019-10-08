@@ -50,6 +50,8 @@ int main (){
         // prepare folders for logged in user is not existing
         crmenu.init(login.getName());
         crmenu.switchHandler(input, login.getName());
+        // program finished keep login or ask to exit..
+        //while instead of if and set null in exit
     }
     // class write menu , init folder with username
 
