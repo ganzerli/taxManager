@@ -97,24 +97,24 @@ int Crudmenu::switchHandler(int num , string username){
         existingFiles = search.getFilesFrom(filepath);
         allDays = search.getDaysVector(existingFiles);
         daysSearched = search.getVectorOfAllDaysPossible(allDays);
-        cout << daysSearched[0][0] << "day searched n 1" << endl;
+        //cout << daysSearched[0][0] << "day searched n 1" << endl;
         //ask datum
         selected = rekenen.getDateMenu();
         if( selected == 0){
             cout << "print all days with rekening" << endl;
-            // same as with span but with all
+            dateSpanDays = daysSearched;
         }else{
             // string* with 2 datums string
             dates = rekenen.getDateSpan();
             // return days between 2 dates
             dateSpanDays = search.vectFromDates(dates , daysSearched);
-            for(vector<vector<string>>::iterator it = dateSpanDays.begin(); it != dateSpanDays.end(); ++it){
+        }
+        // PRINT DATES 
+        for(vector<vector<string>>::iterator it = dateSpanDays.begin(); it != dateSpanDays.end(); ++it){
                 dayVect =  *it;
-                // @ OVERWRITE int selected
                 rekening = rekenen.ifBill(dayVect[1]);
                 expenses = rekenen.ifBill(dayVect[3]);
-
-                if(selected == 0){
+                if(rekening + expenses < 0.01){
                     cout << "amount bill not found in  //>>" << rekening << endl;
                     cout << "and amount expenses not found in  //>>" << expenses << endl;
                 }else{
@@ -124,14 +124,8 @@ int Crudmenu::switchHandler(int num , string username){
                     daysWithBill.push_back(dayVect);
                 }
             }
-        }
-        
-        
         rekenen.printBill(daysWithBill);
-
-  
         // print all datums with bills and expenses
-
         // print after that the amount total of bills and ask to calculate the btw for bill and expenses
         // display and give forecast for amount taxes to pay !!! 
         break;
