@@ -329,33 +329,35 @@ int Search::searchWordInString(string word , string sentence){
     return result;
 }
 
-int Search::change( vector<vector<string>>allDays){
+vector<vector<string>> Search::change( vector<vector<string>>allDays, int userInput){
+     vector<vector<string>> month;
       int result = 0;
       Datum datum;
       bool pass = false;
-      string datumInserted;
+      string userInputCin;
       vector<string> day;
+      string options[] = {"DATE","BILL","NOTES","EXPENSES","OTHER"};
 
       while(!pass){
         cin.clear();
-        cout << "Change change datum.." << endl;
+        cout << "Change datum.." << endl;
         cout << "enter datum to change dd-mm-yyyy" << endl;
-        cin >>datumInserted;
+        cin >>userInputCin;
         cin.clear();
         cin.ignore(10000, '\n');
-        cout << "number selected  " <<datumInserted << endl;
+        cout << "number selected  " <<userInputCin << endl;
         // needed 
         // get month vector , save file with same end of datum . return vector<days<day>>
         // check if datum
-        if(datum.ifDatum(datumInserted) == 1){
+        if(datum.ifDatum(userInputCin) == 1){
             pass = true;
         }else{
             pass = false;
         }
     }
     // get end of datum to open file
-    vector<vector<string>> month;
-    string monthName = datumInserted.substr(3,9);
+    
+    string monthName = userInputCin.substr(3,9);
     int indexDatumInMonth =0;
     int i = 0;
     // iterate in vector and keep the month
@@ -367,9 +369,17 @@ int Search::change( vector<vector<string>>allDays){
             
         ////
         //
-            if(day[0] == datumInserted){
+            if(day[0] == userInputCin){
                 // change user input positiion in vector
-                //day[number] = newUserInput;
+                string userInputCin;
+                cin.clear();
+                cout << "change value of" << day[0] << endl;
+                cout << "enter new value for " << options[userInput - 1]<< endl;
+                getline(cin, userInputCin);
+                cin.clear();
+                cin.ignore(10000, '\n');
+                cout << "changed value in " << options[userInput - 1] << "  AS  " <<userInputCin << endl;
+                day[userInput - 1] = userInputCin;
                 month.push_back(day);
             }else{
                 month.push_back(day);
@@ -378,25 +388,12 @@ int Search::change( vector<vector<string>>allDays){
         }
         
     }
-    
-        // get end of datum to rewrite
-        // 
-        //pack vector
-    // open file to rewrite
-    // rewrite month vector
 
-        
-        // if datum exists , return day vector 
-        //search.change(datum, userInput);
-        // if datum search file
-
-        // get vector of elements to check datum if datum
-        // when datum found change position in vector as user input..
-
-        // change wich datum
-        
-        // change value in vector
-        // rewrite file
+    cout << "printing month  "<< monthName << endl;
+    for(vector<vector<string>>::iterator it = month.begin(); it != month.end(); ++it){
+        day = *it;
+        cout << "value for month"<< monthName << " datum " << day[0] << "value for " <<options[userInput-1] << " is  " << day[userInput-1] << endl;
+    }
   
-    return result;
+    return month;
 }

@@ -29,7 +29,7 @@ int Crudmenu::switchHandler(int num , string username){
         //init variables case 1
         Datafile datafile;
         Search search;
-        string fileName = "lsakdjflksadjflksadjflkasdjf";
+        string fileName = "";
         vector<string> usrdtaresult;
         string filepath ="./DATA/"+ username;
         string toWrite;
@@ -139,7 +139,17 @@ int Crudmenu::switchHandler(int num , string username){
         cout << "select a datum from available days" << endl; 
         search.printValues(daysSearched , userInput);
         cout << "select a datum from available days" << endl;
-        search.change(daysSearched);
+    //  @ overrwrite dateSpanDays for month vector
+        dateSpanDays = search.change(daysSearched , userInput);
+        // create string to write as file back
+        for(vector<vector<string>>::iterator it = dateSpanDays.begin(); it != dateSpanDays.end(); ++it){
+            dayVect = *it;
+            toWrite += datafile.dataToString(dayVect);
+        }
+
+        cout <<  toWrite << endl;
+        cout << "for file " << dateSpanDays[0][0].substr(3,9)<< ".txt" << endl;
+        
 
   
         break;
