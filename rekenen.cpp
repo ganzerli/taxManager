@@ -16,7 +16,7 @@ int Rekenen::getDateMenu(){
     cin >> input;
     cin.clear();
     cin.ignore(10000, '\n');
-    cout << "number selected  " << input << endl;
+    //cout << "number selected  " << input << endl;
 
     if(input == 1){
         result = 0;
@@ -98,16 +98,15 @@ int Rekenen::printBill(vector<vector<string>> daysBill){
         cout << "ENTER LOWER BTW AMOUNT" << endl;
         BTWLOW = inputBtw(); 
 
-        
         cout <<"btw =>"<< (resultBills*BTWHIGH)/ 100 << endl;
-        cout <<"btw train=>"<< (resultExpenses*BTWLOW)/ 100 << endl;
+        cout <<"btw train =>"<< (resultExpenses*BTWLOW)/ 100 << endl;
 
         cout << "@@@@@@@@@@@@@@@@@@@@@@@@" << endl;
         cout << "MINISTERO MASSIMO GANZERLI" << endl;
         cout << "@@@@@@@@@@@@@@@@@@@@@@@@" << endl;
     
         cout << "PAGA ";
-        cout <<( (resultBills*BTWHIGH)/ 100) - ( (resultExpenses* BTWLOW)/ 100) << endl;
+        cout << ( (resultBills*BTWHIGH)/ 100) - ( (resultExpenses* BTWLOW)/ 100) << endl;
     
     return 1;
 };

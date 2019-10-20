@@ -10,8 +10,8 @@
 #include <sys/stat.h>
 
 // class to get array of line in file func(path) return array
-
-// for fstream
+// cout 
+// for fstream 
 #include <fstream> 
 
 struct stat info;
@@ -59,28 +59,23 @@ string Login::checkUsername(){
     // if folder exists check file
     if(found > 0 && found < 3){
          // init userlist
-        
-        cout << "chekcing for file" << endl;
+        //cout << "chekcing for file" << endl;
         //check for file
         ifstream ifile;
         ifile.open("./TEST/login.txt",ios::out); 
-
         // crate instance to write to the file
         ofstream outfile;
-
     if(!ifile || ifile.fail()){
         // file not found create file and add a user
-        cout << "file does not exist" << endl;
+        cout << "file does not exist , creating file ..." << endl;
         //array of chars to write 
         char data[100];
         // open a file in write mode.
         outfile.open("./TEST/login.txt");
-        cout << "Writing to the file" << endl;
-        cout << "Enter Username: "; 
-
+        cout << " ENTER USERNAME : "; 
         cin.getline(data, 100);
         cin.clear();
-            cin.ignore(10000, '\n');
+        cin.ignore(10000, '\n');
         // write inputted data into the file.
         outfile << data << endl;
         outfile.close();
@@ -88,23 +83,23 @@ string Login::checkUsername(){
         // log in user
         // needed cast to string from char
         name = data;
-        printf("logged in as %s \n", data);
+      //  printf("logged in as %s \n", data);
     }else{ // if file exists
         // file found open and check for username
         string* userArr = userList.getLines("./TEST/login.txt");
         //userList.trim
-        cout << " file .txt exists!!" << endl;
+        //cout << " file .txt exists!!" << endl;
         // see if the user isin the array
-        cout << "insert username "<< endl;
+        cout << "INSERT USERNAME : "<< endl;
         //userinput take line and store in input
         string input;
         getline(cin , input);
-        cout << "searching for "<< input << endl;
+        //cout << "searching for "<< input << endl;
 
         // search the user input in the user list
         int counter = 0;
         while(counter < 254){
-            cout << "user n " << counter << "  counted" << userArr[counter] << endl;
+           // cout << "user n " << counter << "  counted" << userArr[counter] << endl;
             
             if( userArr[counter] == ""){
                 counter = 255;
@@ -124,7 +119,7 @@ string Login::checkUsername(){
                 //looping in file
                 //cout << "122 login.cpp ,,, username "<< userArr[counter]  << " not " << input << endl;
             }
-            cout << "login counter" << found << endl;
+           // cout << "login counter" << found << endl;
             counter++;
         }// while
     }
@@ -139,42 +134,26 @@ string Login::checkUsername(){
 
         if(response == 1){
             // add username
-            cout << "writingv NEW username ... " << endl;
+           // cout << "writingv NEW username ... " << endl;
             //rewrite all usernames in the file polus new 
             //outfile.open("./TEST/login.txt");
            
             vector<string> usersvector = userList.fileToVector("./TEST/login.txt");
             //get username
-             cout << "Enter Username: "<<endl; 
+             cout << "Enter NEW Username: "<<endl; 
             cin.clear();
             cin.ignore(10000, '\n');
             string newUsername;
             getline(cin, newUsername);
             cin.clear();
-            //cin.ignore(10000, '\n');
-            
-            cout << ' ' << newUsername << endl;
-            
 
             usersvector.push_back(newUsername);
             userList.vectorToFile(usersvector);
-            // insert in vector 
-            // rewrite to file
-
-            // somehow write the array and add one
-
-
-            //
-
-            //outfile << data << endl;
-            //outfile.close();
-
-            //log in
 
         }else{
             // dont add username 2) = exit
             name = "NULL";
-            cout << response << endl;
+            //cout << response << endl;
         }
 
     }

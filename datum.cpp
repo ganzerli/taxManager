@@ -32,3 +32,51 @@ int Datum::formatDatum(string sdatum){
 
     return datum;
 }
+
+int Datum::ifDatum(string datum){
+    int result = 0;
+    string tempString ="";
+    string day = "";
+    string month ="";
+    string year = "";
+    // if 10 char
+    //CRITERIA 1
+    cout << "cecking datum " << endl;
+
+    if(datum.length() == 10){
+       // cout << "string 10 chars" << endl;
+        //CRITERIA 2
+        // format dd-mm-yyyy
+
+        for(int i = 0 ; i < 2 ; i++){
+            day += datum[i];
+        }
+        // month
+        for(int i = 3 ; i < 5 ; i++){
+            month += datum[i];
+        }
+        // year
+        for(int i = 6 ; i < 10 ; i++){
+            year += datum[i];
+        }
+
+        cout << day << " " << month << " " << year << " " << endl;
+
+        //cout << setDatum[0] << " " << setDatum[1]<< " " << setDatum[2] << endl; 
+        if(stoi(day) < 32){
+            //cout << "day is less then 332!!" << endl;
+            if(stoi(month) < 13){
+            //cout << "month is less then 12!!" << endl;
+                if(stoi(year) < 2200){
+                    //cout << "year is less then 332!!" << endl;
+                    result = 1;
+                }
+            }
+        }
+    }
+    
+    // check if the numbers are in a datum available
+    // dateDigits 0 to int + 1 toint
+      
+    return result;
+}

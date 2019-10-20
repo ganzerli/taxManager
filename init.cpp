@@ -2,28 +2,31 @@
 #include <iostream>
 using namespace std;
 
-int Init::menu()
-{
-    cout << "test  ";
+int Init::menu(){
 
     cout << "welkom bij belastingrekener, ";
     int num;
-    cout << " kiezen :1: login :2: other";
-    cin >> num;
-    cout << "selected" << num << endl;
-    cin.clear();
-    cin.ignore(10000, '\n');
+    bool pass = false;
 
-            if(num < 3 && num > 0){
-                cout << "ok kiezing in menu" << endl;
-                // confirm number stay between 1 and 2
-            }else{
-                cout <<  "kieyzing ontstaat noch noit, reinsert" << endl;
-                num = 0;
-            }
-    // choose the way profgram works ftom numnber cheooson
-    //check if number is a number and in the menu
-    
+    while(!pass){
+        cout << " kiezen :1: login :2: other";
+        cin >> num;
+       // cout << "selected" << num << endl;
+        cin.clear();
+        cin.ignore(10000, '\n');
+
+                if(num < 3 && num > 0){
+                    cout << "ok kiezing in menu" << endl;
+                    pass = true;
+                    // confirm number stay between 1 and 2
+                }else{
+                    cout <<  "kieyzing " << num <<" ontstaat noch noit, reinsert" << endl;
+                    num = 0;
+                    pass = false;
+                }
+        // choose the way profgram works ftom numnber cheooson
+        //check if number is a number and in the menu
+    }
     return num;
 }
 

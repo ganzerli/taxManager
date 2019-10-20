@@ -26,7 +26,6 @@
 using namespace std;
 
 int Crudmenu::switchHandler(int num , string username){
-
         //init variables case 1
         Datafile datafile;
         Search search;
@@ -39,7 +38,6 @@ int Crudmenu::switchHandler(int num , string username){
         vector<string> existingFiles;
         vector<string> allDays;
         vector<vector<string>> daysSearched;
-    
 
         // init variables case 3
         vector<string> datumSpan;
@@ -50,16 +48,17 @@ int Crudmenu::switchHandler(int num , string username){
         vector<vector<string>> daysWithBill; // output
         float rekening;
         float expenses;
+        // case 4
+        int userInput;
         
    
     switch(num) {
 
     case 1 : 
-        cout << "enter data selected.."<< username << endl; // prints "1"
-
+        cout << "enter data of user "<< username << endl; // prints "1"
         // see if there is a folder for the user, if not crate ,
         if(mkdir("./DATA") == 0){
-                printf( " folder created in ./DATA" );
+                //printf( " folder created in ./DATA" );
         }
         // folder will be initialiyed..
         this->init(username);
@@ -75,7 +74,7 @@ int Crudmenu::switchHandler(int num , string username){
 
         cout << filepath << endl;
         // open file and create if not existing
-        cout << "chekc for file" << filepath << endl;
+        //cout << "chekc for file" << filepath << endl;
         
         if(datafile.checkFile(filepath) != 1){
             // create and write first line FILE DOES NOT EXIST
@@ -93,14 +92,14 @@ int Crudmenu::switchHandler(int num , string username){
 
         break;
     case 3 :
-        cout <<"case 3 REKENEN" << endl;
+       // cout <<"case 3 REKENEN" << endl;
         existingFiles = search.getFilesFrom(filepath);
         allDays = search.getDaysVector(existingFiles);
         daysSearched = search.getVectorOfAllDaysPossible(allDays);
         //cout << daysSearched[0][0] << "day searched n 1" << endl;
         //ask datum
         selected = rekenen.getDateMenu();
-        if( selected == 0){
+        if( selected == 0 ){
             cout << "print all days with rekening" << endl;
             dateSpanDays = daysSearched;
         }else{
@@ -115,57 +114,57 @@ int Crudmenu::switchHandler(int num , string username){
                 rekening = rekenen.ifBill(dayVect[1]);
                 expenses = rekenen.ifBill(dayVect[3]);
                 if(rekening + expenses < 0.01){
-                    cout << "amount bill not found in  //>>" << rekening << endl;
-                    cout << "and amount expenses not found in  //>>" << expenses << endl;
+                //    cout << "amount bill not found in  //>>" << rekening << endl;
+                //    cout << "and amount expenses not found in  //>>" << expenses << endl;
                 }else{
                     // bill found
-                    cout << "amount bill of "<< rekening <<" found in" << rekening << endl;
-                    cout << "and amount expenses " << expenses << endl;
+                //    cout << "amount bill of "<< rekening <<" found in" << rekening << endl;
+                //    cout << "and amount expenses " << expenses << endl;
                     daysWithBill.push_back(dayVect);
                 }
             }
-        rekenen.printBill(daysWithBill);
         // print all datums with bills and expenses
-        // print after that the amount total of bills and ask to calculate the btw for bill and expenses
-        // display and give forecast for amount taxes to pay !!! 
+        rekenen.printBill(daysWithBill);
         break;
+    case 4 :
+        // ask what to change
+        cout << "option 4) change .... INSERT WORD DATUM OR BILL AMOUNT" << endl;
+        // get datum 
+        userInput = search.getMenuInput();
+        // print days to 
+        existingFiles = search.getFilesFrom(filepath);
+        allDays = search.getDaysVector(existingFiles);
+        daysSearched = search.getVectorOfAllDaysPossible(allDays);
+
+        cout << "select a datum from available days" << endl; 
+        search.printValues(daysSearched , userInput);
+        cout << "select a datum from available days" << endl;
+        search.change(daysSearched);
+
+  
+        break;
+
     case 2 : 
-        cout << '2' << endl;
+        //cout << '2' << endl;
         // search for various searchs with class search
         // to have files and filenames
         existingFiles = search.getFilesFrom(filepath);
         //cout << "second file" << existingFiles[1] << endl;
         // path of user, input if datum. datum
-        int userInput = search.getMenuInput();
+        userInput = search.getMenuInput();
         // user input
         // open the files with the user input
         // retourn vector with all strings of the days found
-        
         allDays = search.getDaysVector(existingFiles);
-        // vector allDays works fine
         // return vector of vectors of all file possible 
         daysSearched = search.getVectorOfAllDaysPossible(allDays);
-        cout << daysSearched[0][0] << "day searched n 1" << endl;
+        //cout << daysSearched[0][0] << "day searched n 1" << endl;
 
         int ret = search.printValues(daysSearched , userInput);
-
-        // pass user unput and vector to print 
         
-        // searching
-            // for open files
-            // of all files split all days
-                //split the days in vector of strings
-                //return from the file a vector of days
-            
-            // get the vector of strings from the file and check which contains the text
-                //add to the vector of days to get
-            
-            //return a vector with the days containing the info
-            // search.print(input , dates allemal) prints things in decided order or interest of user
         break;
 
     }
-
     return selected;
 };
 
@@ -178,10 +177,9 @@ string Crudmenu::init(string username){
     strstream << "./DATA/" << username ;
     string pathcomplete = strstream.str();
     
-    cout << checkfolder(pathcomplete) << "from checkfoldrer" << endl;
-    cout << checkfolder("./DATA") << endl;
+    //cout << checkfolder(pathcomplete) << "from checkfoldrer" << endl;
+    //cout << checkfolder("./DATA") << endl;
     
-
     if (checkfolder(pathcomplete) == 0){
 
     }else{

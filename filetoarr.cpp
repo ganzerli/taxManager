@@ -13,7 +13,7 @@ ifstream file(path);
 // count size of array
 int linesNum = this->countLines(path);
 
-cout << "n //" << linesNum << "lines in file"<< path <<endl;
+//cout << "n //" << linesNum << "lines in file"<< path <<endl;
     static string rows[254];
 if (file.is_open()) {
     std::string line;

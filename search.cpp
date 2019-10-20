@@ -31,7 +31,7 @@ vector<string> Search::getFilesFrom(string path){
                 possibleNames.push_back(possibleStringDate);
                 // empty string 
             }else{
-           //
+                //
                 sstm << j << '-' << i << ".txt" ;
                 possibleStringDate = sstm.str();
                 //cout <<"possible date , and possinble files  "<< possibleStringDate << endl;
@@ -56,7 +56,6 @@ vector<string> Search::getFilesFrom(string path){
     // needed .. search in months, of the years, bidimensional loop
     //  YeRS.. from the date
     // needed function translating strings to int
-
     return existingFiles;
 }
 
@@ -109,7 +108,6 @@ vector<string> Search::getDaysVector(vector<string> existingFiles){
                 line ="";
             }
         }
-    
     return daysVector;
 }
 
@@ -124,7 +122,6 @@ vector<vector<string>> Search::getVectorOfAllDaysPossible(vector<string> daysVec
         // vector of all days in vector
         daysVec.push_back(dayVec);
     }
-
     return daysVec;
 }
 
@@ -329,5 +326,77 @@ int Search::searchWordInString(string word , string sentence){
             // index op sentence increase
             index++;
         }
+    return result;
+}
+
+int Search::change( vector<vector<string>>allDays){
+      int result = 0;
+      Datum datum;
+      bool pass = false;
+      string datumInserted;
+      vector<string> day;
+
+      while(!pass){
+        cin.clear();
+        cout << "Change change datum.." << endl;
+        cout << "enter datum to change dd-mm-yyyy" << endl;
+        cin >>datumInserted;
+        cin.clear();
+        cin.ignore(10000, '\n');
+        cout << "number selected  " <<datumInserted << endl;
+        // needed 
+        // get month vector , save file with same end of datum . return vector<days<day>>
+        // check if datum
+        if(datum.ifDatum(datumInserted) == 1){
+            pass = true;
+        }else{
+            pass = false;
+        }
+    }
+    // get end of datum to open file
+    vector<vector<string>> month;
+    string monthName = datumInserted.substr(3,9);
+    int indexDatumInMonth =0;
+    int i = 0;
+    // iterate in vector and keep the month
+    for(vector<vector<string>>::iterator it = allDays.begin(); it != allDays.end(); ++it){
+        // get the month in a vector
+        day = *it;
+        if(day[0].substr(3,9) == monthName){
+            cout << day[0] << " is in the month " << monthName << endl;
+            
+        ////
+        //
+            if(day[0] == datumInserted){
+                // change user input positiion in vector
+                //day[number] = newUserInput;
+                month.push_back(day);
+            }else{
+                month.push_back(day);
+            }
+            i++;
+        }
+        
+    }
+    
+        // get end of datum to rewrite
+        // 
+        //pack vector
+    // open file to rewrite
+    // rewrite month vector
+
+        
+        // if datum exists , return day vector 
+        //search.change(datum, userInput);
+        // if datum search file
+
+        // get vector of elements to check datum if datum
+        // when datum found change position in vector as user input..
+
+        // change wich datum
+        
+        // change value in vector
+        // rewrite file
+  
     return result;
 }
