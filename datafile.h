@@ -7,6 +7,7 @@ class Datafile {
     int checkFile(std::string filepath);
     int createFile(std::string filepath , std::string line);
     int addRecord(std::string filepath, std::string newInput);
+    int replaceFile(std::string filepath, std::string newInput);
     std::string dataToString(std::vector<std::string> userInput);
     std::vector<std::string> userInput();
     std::vector<std::string> fileToVector(std::string path);

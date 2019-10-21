@@ -104,3 +104,13 @@ int Datafile::addRecord(string filepath , string newInput){
     outfile << data << endl;
     return inserted;
 }
+
+int Datafile::replaceFile(string filepath , string newInput){
+    int replaced = 0;
+    ofstream outfile;
+    outfile.open(filepath);
+    outfile << newInput << endl;
+    cout << "written " << newInput << " in " << filepath << endl; 
+    replaced += 1;
+    return replaced;
+}

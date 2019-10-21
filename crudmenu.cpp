@@ -148,7 +148,11 @@ int Crudmenu::switchHandler(int num , string username){
         }
 
         cout <<  toWrite << endl;
-        cout << "for file " << dateSpanDays[0][0].substr(3,9)<< ".txt" << endl;
+        filepath+= "/" + dateSpanDays[0][0].substr(3,9)+".txt";
+    
+        cout << "for file " << filepath << endl;
+        // write to file
+        datafile.replaceFile(filepath , toWrite);
         
 
   
