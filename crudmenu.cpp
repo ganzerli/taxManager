@@ -62,20 +62,15 @@ int Crudmenu::switchHandler(int num , string username){
         }
         // folder will be initialiyed..
         this->init(username);
-        
         // ask data to user
-        // make the file with datum as name
         usrdtaresult = datafile.userInput();
-        
         // from the first input get end of date to use as filename
         fileName = usrdtaresult[0];
+        //create filepath
         fileName = fileName.substr(3,7);
         filepath = filepath +'/'+ fileName + ".txt";
-
         cout << filepath << endl;
         // open file and create if not existing
-        //cout << "chekc for file" << filepath << endl;
-        
         if(datafile.checkFile(filepath) != 1){
             // create and write first line FILE DOES NOT EXIST
             cout << "no , file not existing create.." <<endl;
@@ -127,35 +122,30 @@ int Crudmenu::switchHandler(int num , string username){
         rekenen.printBill(daysWithBill);
         break;
     case 4 :
-        // ask what to change
         cout << "option 4) change .... INSERT WORD DATUM OR BILL AMOUNT" << endl;
         // get datum 
         userInput = search.getMenuInput();
-        // print days to 
+        // get vector of days
         existingFiles = search.getFilesFrom(filepath);
         allDays = search.getDaysVector(existingFiles);
         daysSearched = search.getVectorOfAllDaysPossible(allDays);
-
-        cout << "select a datum from available days" << endl; 
+        // print values with dates
         search.printValues(daysSearched , userInput);
-        cout << "select a datum from available days" << endl;
-    //  @ overrwrite dateSpanDays for month vector
+        cout << "select DATE from available days" << endl;
+    //  @ overrwrite dateSpanDays as MONTH vector
         dateSpanDays = search.change(daysSearched , userInput);
-        // create string to write as file back
+        // create string to write as file back form MONTH
         for(vector<vector<string>>::iterator it = dateSpanDays.begin(); it != dateSpanDays.end(); ++it){
             dayVect = *it;
             toWrite += datafile.dataToString(dayVect);
         }
-
+        //create filepath
         cout <<  toWrite << endl;
         filepath+= "/" + dateSpanDays[0][0].substr(3,9)+".txt";
     
         cout << "for file " << filepath << endl;
         // write to file
         datafile.replaceFile(filepath , toWrite);
-        
-
-  
         break;
 
     case 2 : 
@@ -195,7 +185,9 @@ string Crudmenu::init(string username){
     //cout << checkfolder("./DATA") << endl;
     
     if (checkfolder(pathcomplete) == 0){
-
+        // create file in the folder created with user tables
+        // ask user if keep the rekening and expenses 
+        // 
     }else{
         //data already initialized, get and retpurn path
     }

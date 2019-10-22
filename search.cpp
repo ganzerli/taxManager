@@ -309,8 +309,10 @@ int Search::searchWordInString(string word , string sentence){
                     }else{
                         found = false;
                         tempString ="";
+                        increment = 0;
                     }
-                   // cout << "temp string " <<  tempString << endl;
+
+                    cout << "temp string " <<  tempString << endl;
                    // works also if part of the word, makelik same with, and next char is empty then is not only part 
                     if(tempString == word){
                         // EXIT ALL RETURN OK
@@ -320,7 +322,9 @@ int Search::searchWordInString(string word , string sentence){
                     }
                 increment++;
                 }
-                // if the word is same as searched return
+                // char in sentence not in the word
+                tempString = "";
+                // search word from begin
                 increment = 0;
             }
             // index op sentence increase

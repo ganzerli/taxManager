@@ -42,7 +42,6 @@ int main (){
             cout << "2 >> find  " << endl;
             cout << "3 >> rekenen  " << endl;
             cout << "4 >> change " << endl;
-            
             int input;
             cin >> input;
             cin.clear();
@@ -52,8 +51,14 @@ int main (){
             crmenu.init(login.getName());
             // for input check if number and in menu 
             crmenu.switchHandler(input, login.getName());
-            // program finished keep login or ask to exit..
-            //while instead of if and set null in exit
+        }else{
+            cout << "insert name again" << endl;
+            login.checkUsername();
+            cout << "NO RECORDS FOUND.. WRITE DATA REQUIRED";
+            cout <<"press any key to write to file" << endl;
+            crmenu.init(login.getName());
+            // for input check if number and in menu 
+            crmenu.switchHandler(1, login.getName());
         }
         cout << ".. continue or exit , select : " << endl;
         cout << "   1) Continue logged in" << endl;

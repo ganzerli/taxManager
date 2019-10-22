@@ -76,7 +76,7 @@ string Datafile::dataToString(vector<string> userInput){
     return dataLine;
 }
 
-//
+
 int Datafile::addRecord(string filepath , string newInput){
     int inserted = 0;
     Filetoarr getFileInfo;
