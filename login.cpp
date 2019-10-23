@@ -106,7 +106,7 @@ string Login::checkUsername(){
 
              if( userArr[counter] == input){
             // username found
-                cout << "!!!! username "<< input << "found !!!" << endl;
+                cout << "Username  "<< input << " found!" << endl;
                 // register username and continue
                 name  = userArr[counter];
                 found++;

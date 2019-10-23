@@ -155,7 +155,6 @@ int Crudmenu::switchHandler(int num , string username){
         existingFiles = search.getFilesFrom(filepath);
         //cout << "second file" << existingFiles[1] << endl;
         // path of user, input if datum. datum
-        cout << "find selected , entering getmenuinput" << endl;
         userInput = search.getMenuInput(filepath);
         // user input
         // open the files with the user input

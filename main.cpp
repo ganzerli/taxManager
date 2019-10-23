@@ -29,7 +29,7 @@ int main (){
 
     //have a menuhandler to get the write name program class Login
     login.checkUsername(); 
-    cout << "check main , logged in as .. " << login.getName() << endl;
+    cout << "Logged in as .. " << login.getName() << endl;
     // if user registered login ok and ask options write read
     // switch handler 
     while(!pass){
@@ -37,7 +37,7 @@ int main (){
             // if not created init folder
             // ask what to do
         
-            cout << " welcome  " << login.getName() << " choose an option for the data management" << endl;
+            cout << " welcome : " << login.getName() << ", choose an option for the data management" << endl;
             cout << "1 >> write to file " << endl;
             cout << "2 >> find  " << endl;
             cout << "3 >> rekenen  " << endl;

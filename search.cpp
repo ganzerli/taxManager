@@ -244,7 +244,6 @@ int Search::printValues(vector<vector<string>> allDays, int userInput , string f
         cin >> word;
         cin.clear();
         cin.ignore(10000, '\n');
-        cout << "datum entered" << word <<endl;
         bool found = false;
     //iteate for the days
     // have a vectorvector to save the result and print..
@@ -252,7 +251,6 @@ int Search::printValues(vector<vector<string>> allDays, int userInput , string f
         
         for(vector<vector<string>>::iterator it = allDays.begin(); it != allDays.end(); ++it){
             dayVect = *it;
-            cout << dayVect[userInput-1] << " note or expenses of date " << dayVect[0] << endl;
             // for every day check if the word is in , if that print day or few
             // if word found in other user input display with user input and datum
             // function searching the word
@@ -300,7 +298,7 @@ int Search::searchWord(string word , vector<string>day){
     for(vector<string>::iterator it = day.begin(); it != day.end(); ++it){
         string daySection = *it;
         // loop in day section
-        cout << "searching in "<< *it << "  ..word.. " <<word<< endl;
+       // cout << "searching in "<< *it << "  ..word.. " <<word<< endl;
         if(searchWordInString(word , daySection) == 1 ){
             // add the vector to the results vector
             result = 1 ;
@@ -334,7 +332,7 @@ int Search::searchWordInString(string word , string sentence){
                         increment = 0;
                     }
 
-                    cout << "temp string " <<  tempString << endl;
+                    //cout << "temp string " <<  tempString << endl;
                    // works also if part of the word, makelik same with, and next char is empty then is not only part 
                     if(tempString == word){
                         // EXIT ALL RETURN OK
