@@ -16,11 +16,11 @@ int Init::menu(){
         cin.ignore(10000, '\n');
 
                 if(num < 3 && num > 0){
-                    cout << "ok kiezing in menu" << endl;
+                   // cout << "ok kiezing in menu" << endl;
                     pass = true;
                     // confirm number stay between 1 and 2
                 }else{
-                    cout <<  "kieyzing " << num <<" ontstaat noch noit, reinsert" << endl;
+                    cout <<  "kiezing " << num <<" ontstaat noch noit, reinsert" << endl;
                     num = 0;
                     pass = false;
                 }

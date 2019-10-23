@@ -14,6 +14,7 @@ using namespace std;
         Datum datum;
         Referenceonkruider onkruidr;
         vector<string> onkrVec;
+        bool pass = false;
         // !! TO DO !! get arr from file to let define user the whole capacity of the database .. mar later..
         // probleme > user curva input inzetten , nit te uitkrijgen op gezoegte gewijzigte tabele.
         const int arrSize = 5;
@@ -23,6 +24,7 @@ using namespace std;
         // // // // 
         filepath+="/DB.txt";
         onkrVec = onkruidr.onkruidReference(filepath);
+        const int onkruidetSize = onkrVec.size();
         cout << "onkruid Reference" << endl;
         cout << onkrVec[0] << " " << onkrVec[1]<< " " << onkrVec[2] <<endl;
         // // // //  replace to arr
@@ -33,15 +35,30 @@ using namespace std;
 
         cin.clear();
 
-        for ( int i = 0 ; i < arrSize; i++){
-            cout << datainput[i] << endl;
+        // ask first datum
+        while(!pass){
+            //cout << datainput[0] << endl;
+            cout << onkrVec[0] << endl;
             getline(cin, stringInput);
+            if(datum.ifDatum(stringInput)){
+                pass = true;
+                userInput.push_back(stringInput);
+            }else{
+                pass = false;
+                cout << "datum format not valid enter again dd-mm-yyyy";
+            }
+        }
+
+        for ( int i = 1 ; i < onkruidetSize; i++){
+            //cout << datainput[i] << endl;
+            cout << onkrVec[i] << endl;
+            getline(cin, stringInput);
+
             userInput.push_back(stringInput);
             // for input get strigs from user
-           // cout << userInput[i] << endl;
-            cout << "DATA for"<< datainput[i] <<" : "<< stringInput <<"  "<< i << " of "<< arrSize << endl;
+            // //cout << userInput[i] << endl;
+            cout << "DATA for"<< onkrVec[i] <<" : "<< stringInput <<"  "<< i << " of "<< onkruidetSize << endl;
         }
-        datum.ifDatum(userInput[0]);
         
         
     //cout << "datafile: all data inserted"<< endl;

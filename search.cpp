@@ -1,6 +1,8 @@
 #include"search.h"
 #include"filetoarr.h"
 #include"datum.h"
+#include "referenceonkruider.h"
+
 #include <sstream>
 #include <iostream>
 #include <fstream> 
@@ -52,7 +54,7 @@ vector<string> Search::getFilesFrom(string path){
             }
         }
         // check files in vecotor
-        cout << existingFiles[0] << "vector to retourn positoin 0" << endl;
+     //   cout << existingFiles[0] << "vector to retourn positoin 0" << endl;
     // needed .. search in months, of the years, bidimensional loop
     //  YeRS.. from the date
     // needed function translating strings to int
@@ -68,12 +70,25 @@ inline bool Search::fileExistence(const string& name) {
     }   
 }
 
-int Search::getMenuInput(){
+int Search::getMenuInput(string filepath){
     // get user input 
-    int input;
+    Referenceonkruider onkruidr;
+    vector<string> onkrVec;
+    filepath += "/DB.txt";
+    onkrVec = onkruidr.onkruidReference(filepath);
+    const int onkruidetSize = onkrVec.size();
+    
+    int input = 1;
     cin.clear();
-    cout << "search data from >> 1)datum  2)bill  3)notes  4)expenses  5)other" << endl;
-    cout << "select number 1 - 5"<< endl;
+    cout << "search data from >>"<< endl;
+    for(string i : onkrVec){
+        cout << input << ") " << i << "   ";
+        input ++;
+    }
+    
+    input = 0;
+    cout << endl;
+    cout << "select number 1 - " << onkruidetSize << endl;
     cin >> input;
     cin.clear();
     cin.ignore(10000, '\n');
@@ -182,10 +197,17 @@ vector<string> Search::splitString(string day){
     return vectDay;
 }
 
-int Search::printValues(vector<vector<string>> allDays, int userInput){
+int Search::printValues(vector<vector<string>> allDays, int userInput , string filepath){
     vector<string> dayVect;
     string date;
-    string options[] = {"DATE","BILL","NOTES","EXPENSES","OTHER"};
+    ////string options[] = {"DATE","BILL","NOTES","EXPENSES","OTHER"};
+
+    Referenceonkruider onkruidr;
+    vector<string> onkrVec;
+    filepath += "/DB.txt";
+    onkrVec = onkruidr.onkruidReference(filepath);
+    const int onkruidetSize = onkrVec.size();
+
     string word;
 
     if(userInput == 1){
@@ -204,10 +226,10 @@ int Search::printValues(vector<vector<string>> allDays, int userInput){
            dayVect = *it;
            // CHECK DATUM FROM USER INPUT
             if(date == dayVect[0]){
-                // iterate throught array of options
-                 for(int i=0; i < (sizeof(options)/sizeof(*options)); i++){
+                // iterate throught ar//ray of options
+                 for(int i=0; i < onkruidetSize; i++){
                     // print element in arr
-                    cout << options[i] << " //>> "<< dayVect[i] <<endl;
+                    cout << onkrVec[i] << " //>> "<< dayVect[i] <<endl;
                 }
                 found = true;
             }
@@ -255,7 +277,7 @@ int Search::printValues(vector<vector<string>> allDays, int userInput){
                 cout << "printing data of day " << dayVect[0] << endl;
                 for(vector<string>::iterator ir = dayVect.begin() ; ir != dayVect.end(); ++ir){
                     part = *ir;
-                    cout << options[index] << "  IS  "<< part << endl;
+                    cout << onkrVec[index] << "  >=>  "<< part << endl;
                     index++;
                 }
                 index = 0;
@@ -333,14 +355,21 @@ int Search::searchWordInString(string word , string sentence){
     return result;
 }
 
-vector<vector<string>> Search::change( vector<vector<string>>allDays, int userInput){
+vector<vector<string>> Search::change( vector<vector<string>>allDays, int userInput , string filepath){
      vector<vector<string>> month;
       int result = 0;
       Datum datum;
       bool pass = false;
       string userInputCin;
       vector<string> day;
-      string options[] = {"DATE","BILL","NOTES","EXPENSES","OTHER"};
+      //string options[] = {"DATE","BILL","NOTES","EXPENSES","OTHER"};
+        // reference onkruider
+        Referenceonkruider onkruidr;
+        vector<string> onkrVec;  
+        filepath += "/DB.txt";
+        onkrVec = onkruidr.onkruidReference(filepath);
+        const int onkruidetSize = onkrVec.size();
+        //
 
       while(!pass){
         cin.clear();
@@ -378,11 +407,11 @@ vector<vector<string>> Search::change( vector<vector<string>>allDays, int userIn
                 string userInputCin;
                 cin.clear();
                 cout << "change value of" << day[0] << endl;
-                cout << "enter new value for " << options[userInput - 1]<< endl;
+                cout << "enter new value for " << onkrVec[userInput - 1]<< endl;
                 getline(cin, userInputCin);
                 cin.clear();
                 cin.ignore(10000, '\n');
-                cout << "changed value in " << options[userInput - 1] << "  AS  " <<userInputCin << endl;
+                cout << "changed value in " << onkrVec[userInput - 1] << "  AS  " <<userInputCin << endl;
                 day[userInput - 1] = userInputCin;
                 month.push_back(day);
             }else{
@@ -396,7 +425,7 @@ vector<vector<string>> Search::change( vector<vector<string>>allDays, int userIn
     cout << "printing month  "<< monthName << endl;
     for(vector<vector<string>>::iterator it = month.begin(); it != month.end(); ++it){
         day = *it;
-        cout << "value for month"<< monthName << " datum " << day[0] << "value for " <<options[userInput-1] << " is  " << day[userInput-1] << endl;
+        cout << "value for month"<< monthName << " datum " << day[0] << "value for " <<onkrVec[userInput-1] << " is  " << day[userInput-1] << endl;
     }
   
     return month;

@@ -122,18 +122,18 @@ int Crudmenu::switchHandler(int num , string username){
         rekenen.printBill(daysWithBill);
         break;
     case 4 :
-        cout << "option 4) change .... INSERT WORD DATUM OR BILL AMOUNT" << endl;
+        cout << "option 4) CHANGE .... INSERT WORD DATUM OR BILL AMOUNT" << endl;
         // get datum 
-        userInput = search.getMenuInput();
+        userInput = search.getMenuInput(filepath);
         // get vector of days
         existingFiles = search.getFilesFrom(filepath);
         allDays = search.getDaysVector(existingFiles);
         daysSearched = search.getVectorOfAllDaysPossible(allDays);
         // print values with dates
-        search.printValues(daysSearched , userInput);
+        search.printValues(daysSearched , userInput , filepath);
         cout << "select DATE from available days" << endl;
     //  @ overrwrite dateSpanDays as MONTH vector
-        dateSpanDays = search.change(daysSearched , userInput);
+        dateSpanDays = search.change(daysSearched , userInput , filepath);
         // create string to write as file back form MONTH
         for(vector<vector<string>>::iterator it = dateSpanDays.begin(); it != dateSpanDays.end(); ++it){
             dayVect = *it;
@@ -155,7 +155,8 @@ int Crudmenu::switchHandler(int num , string username){
         existingFiles = search.getFilesFrom(filepath);
         //cout << "second file" << existingFiles[1] << endl;
         // path of user, input if datum. datum
-        userInput = search.getMenuInput();
+        cout << "find selected , entering getmenuinput" << endl;
+        userInput = search.getMenuInput(filepath);
         // user input
         // open the files with the user input
         // retourn vector with all strings of the days found
@@ -164,7 +165,7 @@ int Crudmenu::switchHandler(int num , string username){
         daysSearched = search.getVectorOfAllDaysPossible(allDays);
         //cout << daysSearched[0][0] << "day searched n 1" << endl;
 
-        int ret = search.printValues(daysSearched , userInput);
+        int ret = search.printValues(daysSearched , userInput , filepath);
         
         break;
 
