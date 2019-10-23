@@ -33,6 +33,27 @@ if (file.is_open()) {
     return rows;
 }
 
+
+vector<string> Filetoarr::getLinesV(string path){
+    vector<string> output;
+    string line;
+    string templine;
+    // init input file stream
+    ifstream file(path);
+
+    if (file.is_open()) {
+        while (getline(file, line)) {
+            templine = line.c_str();
+            output.push_back(templine); 
+        }
+        file.close();
+    }else{
+        cout << "unable to open file:" << path << endl;
+    }
+        return output;
+}
+
+
 // not usable in c++
 int Filetoarr::countLines(string path){
     static int num = 0;
@@ -50,7 +71,6 @@ int Filetoarr::countLines(string path){
 }
 
 vector<string> Filetoarr::fileToVector(string path){
-
     vector<string> stringVector;
     ifstream file(path);
 

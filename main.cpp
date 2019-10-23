@@ -52,10 +52,9 @@ int main (){
             // for input check if number and in menu 
             crmenu.switchHandler(input, login.getName());
         }else{
-            cout << "insert name again" << endl;
+            cout << "confirm username: " << endl;
             login.checkUsername();
-            cout << "NO RECORDS FOUND.. WRITE DATA REQUIRED";
-            cout <<"press any key to write to file" << endl;
+            cout << "NO RECORDS FOUND.. WRITE DATA REQUIRED  , press any key" << endl;
             crmenu.init(login.getName());
             // for input check if number and in menu 
             crmenu.switchHandler(1, login.getName());

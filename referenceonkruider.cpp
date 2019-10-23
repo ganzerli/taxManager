@@ -1,11 +1,16 @@
 #include "referenceonkruider.h"
-#include "<vector>"
+#include "filetoarr.h"
+#include <vector>
+#include <iostream>
 using namespace std;
 
-vector<string> Referenceonkruider::oncruidReference(){
+vector<string> Referenceonkruider::onkruidReference(string path){
     vector<string> oncruiding;
+    Filetoarr filArr;
     cout << "oncruiding de Reference" << endl;
-    // open file get content and add to vector
-    //adding day hopelik niet als java , nu heben wij newue afzittiger
+    oncruiding = filArr.getLinesV(path);
+    // open file 
+    //get lines
+    //fill vector
     return oncruiding;
 }

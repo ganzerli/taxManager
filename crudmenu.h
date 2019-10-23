@@ -6,5 +6,6 @@ class Crudmenu {
     std::string init(std::string username);
     std::string getPath();
     int checkfolder(std::string pathname);
+    int initDB(std::string pathname);
     private:
 };

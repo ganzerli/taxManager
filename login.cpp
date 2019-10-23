@@ -80,10 +80,9 @@ string Login::checkUsername(){
         outfile << data << endl;
         outfile.close();
         found++;
-        // log in user
-        // needed cast to string from char
+
         name = data;
-      //  printf("logged in as %s \n", data);
+
     }else{ // if file exists
         // file found open and check for username
         string* userArr = userList.getLines("./TEST/login.txt");
@@ -157,7 +156,6 @@ string Login::checkUsername(){
         }
 
     }
-    
     return this-> name;
 }
 

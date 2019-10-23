@@ -1,6 +1,7 @@
-#import <string>
+#include <string>
+#include <vector>
 
 class Referenceonkruider{
     public:
-    std::vector<std::srting> oncruidReference();
-}
+    std::vector<std::string> onkruidReference(std::string path);
+};

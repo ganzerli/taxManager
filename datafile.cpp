@@ -1,6 +1,6 @@
 #include"datafile.h"
 #include"datum.h"
-
+#include"referenceonkruider.h"
 #include"filetoarr.h"
 
 #include <iostream>
@@ -9,19 +9,29 @@
 
 using namespace std;
 
-    vector<string> Datafile::userInput(){
+    vector<string> Datafile::userInput(string filepath){
         // array of inputs to array of answers
         Datum datum;
+        Referenceonkruider onkruidr;
+        vector<string> onkrVec;
         // !! TO DO !! get arr from file to let define user the whole capacity of the database .. mar later..
         // probleme > user curva input inzetten , nit te uitkrijgen op gezoegte gewijzigte tabele.
         const int arrSize = 5;
         string datainput[arrSize] = {"enter day", "amount bill", "notes", "expenses", "other"};
+        // get vector from file user DB.txt
+
+        // // // // 
+        filepath+="/DB.txt";
+        onkrVec = onkruidr.onkruidReference(filepath);
+        cout << "onkruid Reference" << endl;
+        cout << onkrVec[0] << " " << onkrVec[1]<< " " << onkrVec[2] <<endl;
+        // // // //  replace to arr
+
         string stringInput;
         vector<string> userInput;
         cout << "PRESS RETOURN TO COFIRM" << endl;
 
         cin.clear();
-        cin.ignore(10000, '\n');
 
         for ( int i = 0 ; i < arrSize; i++){
             cout << datainput[i] << endl;

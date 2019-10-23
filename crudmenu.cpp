@@ -63,7 +63,7 @@ int Crudmenu::switchHandler(int num , string username){
         // folder will be initialiyed..
         this->init(username);
         // ask data to user
-        usrdtaresult = datafile.userInput();
+        usrdtaresult = datafile.userInput(filepath);
         // from the first input get end of date to use as filename
         fileName = usrdtaresult[0];
         //create filepath
@@ -187,12 +187,50 @@ string Crudmenu::init(string username){
     if (checkfolder(pathcomplete) == 0){
         // create file in the folder created with user tables
         // ask user if keep the rekening and expenses 
+        pathcomplete += "/DB.txt";
+        initDB(pathcomplete);
         // 
     }else{
         //data already initialized, get and retpurn path
     }
+    // init database
+
+
     return pathcomplete;
 };
+
+int Crudmenu::initDB(string path){
+    int result =0;
+    bool userAdd = true;
+    ofstream outfile;
+    int response;
+    string newColumn;
+    string column;
+    // ask user tables to use .. if 2 exit and print
+    outfile.open(path);
+    outfile << "date" << endl;
+    while(userAdd){
+        cout << "1) add column to the db 2) exit" << endl;
+        cin.clear();
+        cin >> response;
+        cin.clear();
+        cin.ignore(10000, '\n');
+        if(response == 1){
+            cout << "ADD COLUMN TO DB" << endl;
+            userAdd = true;
+            cin.clear();
+            cin >> newColumn;
+            cin.clear();
+            cin.ignore(10000, '\n');
+            outfile << newColumn << endl;
+            result = 1;
+        }else{
+            userAdd = false;
+        }
+    }
+    outfile.close();
+    return result;
+}
 
 int Crudmenu::checkfolder(string pathname){
     struct stat info;
@@ -214,7 +252,6 @@ int Crudmenu::checkfolder(string pathname){
             printf( " folder created in %s \n", dirPathname );
             system("pause");
             // folder created
-            dirPath++;
         }
     }else if( info.st_mode & S_IFDIR ) { 
         // FOLDER EXISTS 
