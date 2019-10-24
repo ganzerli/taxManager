@@ -41,7 +41,6 @@ int Datum::ifDatum(string datum){
     string year = "";
     // if 10 char
     //CRITERIA 1
-    cout << "cecking datum " << endl;
 
     if(datum.length() == 10){
        // cout << "string 10 chars" << endl;
@@ -59,8 +58,6 @@ int Datum::ifDatum(string datum){
         for(int i = 6 ; i < 10 ; i++){
             year += datum[i];
         }
-
-        cout << day << " " << month << " " << year << " " << endl;
 
         //cout << setDatum[0] << " " << setDatum[1]<< " " << setDatum[2] << endl; 
         if(stoi(day) < 32){

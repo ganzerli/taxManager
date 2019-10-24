@@ -1,0 +1,6 @@
+date
+rekening
+note
+expenses
+other
+food

@@ -2,7 +2,6 @@
 #include"login.h"
 #include"Filetoarr.h"
 #include"Crudmenu.h"
-
 #include<iostream>
 
 using namespace std;
@@ -21,8 +20,9 @@ int main (){
     // entering menu
     // class init start the program and has menuhandler
     int numberSelected = init.menu();
-    while ( numberSelected == 0 ){
+    while ( numberSelected != 1 ){
         numberSelected = init.menu();
+        cout << "kiezing in menu nooit ontstaan" << endl;
     }
     string text = init.menuGekozen(numberSelected);
     // when number selected is in the menu..
@@ -59,10 +59,10 @@ int main (){
             // for input check if number and in menu 
             crmenu.switchHandler(1, login.getName());
         }
+
         cout << ".. continue or exit , select : " << endl;
         cout << "   1) Continue logged in" << endl;
         cout << "   2) Exit" << endl;
-        
         
         string theString;
         getline(cin, theString);
@@ -76,8 +76,6 @@ int main (){
             cout << "Exit program ..." << endl;
         }
     }
-
     // save to then writre in the doc
-
     return 1;
 }

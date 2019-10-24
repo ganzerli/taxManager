@@ -372,7 +372,7 @@ vector<vector<string>> Search::change( vector<vector<string>>allDays, int userIn
       while(!pass){
         cin.clear();
         cout << "Change datum.." << endl;
-        cout << "enter datum to change dd-mm-yyyy" << endl;
+        cout << "ENTER DATUM FROM SELECTED: format   dd-mm-yyyy" << endl;
         cin >>userInputCin;
         cin.clear();
         cin.ignore(10000, '\n');
@@ -414,6 +414,7 @@ vector<vector<string>> Search::change( vector<vector<string>>allDays, int userIn
                 month.push_back(day);
             }else{
                 month.push_back(day);
+                // no foud send feedback
             }
             i++;
         }

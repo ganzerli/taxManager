@@ -131,7 +131,6 @@ int Crudmenu::switchHandler(int num , string username){
         daysSearched = search.getVectorOfAllDaysPossible(allDays);
         // print values with dates
         search.printValues(daysSearched , userInput , filepath);
-        cout << "select DATE from available days" << endl;
     //  @ overrwrite dateSpanDays as MONTH vector
         dateSpanDays = search.change(daysSearched , userInput , filepath);
         // create string to write as file back form MONTH
@@ -209,6 +208,21 @@ int Crudmenu::initDB(string path){
     // ask user tables to use .. if 2 exit and print
     outfile.open(path);
     outfile << "date" << endl;
+
+    // ask for keeping the structure for the rekening
+        cout << "CHOOSE  1) Keep DB structure for rekenen, 2) insert all DB columns" << endl;
+        cin.clear();
+        cin >> response;
+        cin.clear();
+        cin.ignore(10000, '\n');
+
+    if(response == 1){
+        outfile << "rekening" << endl;
+        outfile << "note" << endl;
+        outfile << "expenses" << endl;
+        outfile << "other" << endl;
+    }
+    // add all other columns
     while(userAdd){
         cout << "1) add column to the db 2) exit" << endl;
         cin.clear();
